@@ -1,0 +1,46 @@
+{
+  "name":"True false question",
+  "text":"this is an example question the answer is false",
+  "images" : ["123234","123234","123234"],
+  "answer":false,
+  "type":"truefalse"
+}
+
+{
+  "name":"Question multiple choice",
+  "text":"this is an example multiple choice question with one correct 
+answer",
+  "images" : ["123234","123234","123234"],
+  "answers": [
+    {
+      "text":"answer one",
+      "correct":true
+    },
+    {
+      "text":"answer two",
+      "correct":false
+    }
+  ],
+  "type":"multiplechoice"
+}
+
+{
+  "name":"Question fill in the blanks",
+  "text":"you must enter the name of this course unit",
+  "answers": [
+    {
+      "text":"COMP16111",
+      "correct":false
+    },
+    {
+      "text":"COMP16212",
+      "correct":false
+    },
+    {
+      "text":"COMP10120",
+      "correct":true
+    }
+  ],
+  "type":"blanks",
+  "editdistance":2
+}
