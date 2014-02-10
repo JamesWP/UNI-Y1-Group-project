@@ -1,5 +1,4 @@
 {
-  "name":"True false question",
   "text":"this is an example question the answer is false",
   "images" : ["123234","123234","123234"],
   "answer":false,
@@ -7,7 +6,6 @@
 }
 
 {
-  "name":"Question multiple choice",
   "text":"this is an example multiple choice question with one correct 
 answer",
   "images" : ["123234","123234","123234"],
@@ -25,7 +23,6 @@ answer",
 }
 
 {
-  "name":"Question fill in the blanks",
   "text":"you must enter the name of this course unit",
   "answers": [
     {
