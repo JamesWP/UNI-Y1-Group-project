@@ -1,130 +1,145 @@
 {   
-  "text":"Which long-running game serious was spawned by a company's last attempt at making a game before closing?"
+  "text":"Which long-running game serious was spawned by a company's last attempt at making a game before closing?",
   "answers:"[
     {
-      "text":"Mega Man"
+      "text":"Mega Man",
       "correct":false
-    }
+    },
     {
-      "text":"Dragon Quest"
+      "text":"Dragon Quest",
       "correct":false
-    }
+    },
     {
-      "text":"Persona"
+      "text":"Persona",
       "correct":false
-    }
+    },
     {
-      "text":"Final Fantasy"
+      "text":"Final Fantasy",
       "correct":true
     }
-  ]
+  ],
   "type":"multiplechoice"
 }
 
 {
-  "text":"Minecraft was created by Jeb."
-  "answer":false
+  "text":"Minecraft was created by Jeb.",
+  "answer":false,
   "type":"truefalse"
 }
 
 {
-  "text":"The theme to Pac-man is called Korobeiniki."
-  "answer":false
+  "text":"The theme to Pac-man is called Korobeiniki.",
+  "answer":false,
   "type":"truefalse"
 }
 
 {
-  "text":"The ghosts in pacman are called Inky, Blinky, Pinky and ____?"
-  "answers":"Clyde"
-  "type":"blanks"
+  "text":"The ghosts in pacman are called Inky, Blinky, Pinky and ____?",
+  "answers":[
+    {
+      "text":"Clyde",
+      "correct":true
+    }
+  ],
+  "type":"blanks",
   "editdistance":1
 }
 
 {
-  "text":"In Pac-man, each ghost has its own distinct AI."
-  "answer":true
+  "text":"In Pac-man, each ghost has its own distinct AI.",
+  "answer":true,
   "type":"truefalse"
 }
 
 {
-  "text":"What was the first Pokemon that Ash Ketchum recieved?"
+  "text":"What was the first Pokemon that Ash Ketchum recieved?",
   "answers:"[
     {
-      "text":"Pikachu"
+      "text":"Pikachu",
       "correct":true
-    }
+    },
     {
-      "text":"Pidgey"
+      "text":"Pidgey",
+      "correct":false
+    },
+    {
+      "text":"Augumon",
+      "correct":false
+    },
+    {
+      "text":"Bulbasaur",
       "correct":false
     }
-    {
-      "text":"Augumon"
-      "correct":false
-    }
-    {
-      "text":"Bulbasaur"
-      "correct":false
-    }
-  ]
+  ],
   "type":"multiplechoice"
 }
 
 {
-  "text":"What is the name of the protagonist in The Legend of Zelda?"
-  "answers":"Link"
-  "type":"blanks"
-  "editdistance":0
-}
-
-{
-  "Text":"The R in RPG (gaming acronym) stands for what?"
-  "answers":"Role"
-  "type":"blanks"
-  "editdistance":0
-}
-
-{
-  "Text":"ArenaNet created which MMORPG?"
-  "answers:"[
+  "text":"What is the name of the protagonist in The Legend of Zelda?",
+  "answers":[
     {
-      "text":"Star Wars: The Old Republic"
-      "correct":false
-    }
-    {
-      "text":"Runescape"
-      "correct":false
-    }
-    {
-      "text":"Guild Wars 2"
+      "text": "Link",
       "correct":true
     }
+  ],
+  "type":"blanks",
+  "editdistance":0
+}
+
+{
+  "Text":"The R in RPG (gaming acronym) stands for what?",
+  "answers":[
     {
-      "text":"World of Warcraft"
+      "text":"Role",
+      "correct":true
+    }
+  ],
+  "type":"blanks",
+  "editdistance":0
+}
+
+{
+  "Text":"ArenaNet created which MMORPG?",
+  "answers:"[
+    {
+      "text":"Star Wars: The Old Republic",
+      "correct":false
+    },
+    {
+      "text":"Runescape",
+      "correct":false
+    },
+    {
+      "text":"Guild Wars 2",
+      "correct":true
+    },
+    {
+      "text":"World of Warcraft",
       "correct":false
     }
-  ]
+  ],
   "type":"multiplechoice"
 }
   
 {
-  "text":"Enix Corporation merged with which rival company in 2003?"
-    "answers:"[
+  "text":"Enix Corporation merged with which rival company in 2003?",
+  "answers:"[
     {
-      "text":"Square Soft"
+      "text":"Square Soft",
       "correct":true
-    }
+    },
     {
-      "text":"Nintendo"
+      "text":"Nintendo",
       "correct":false
-    }
+    },
     {
-      "text":"Bethesda Softworks"
+      "text":"Bethesda Softworks",
       "correct":false
-    }
+    },
     {
-      "text":"Kairosoft"
+      "text":"Kairosoft",
       "correct":false
-    }
-  ]
+    },
+  ],
   "type":"multiplechoice"
 }

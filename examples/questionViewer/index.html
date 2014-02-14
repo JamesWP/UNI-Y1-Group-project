@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+  <head>
+    <script src="module-question.js" ></script>
+    <script src="lib/handlebars-v1.3.0.js"></script>
+    <script src="lib/jquery.js"></script>
+    <script>
+    
+      $(function(){
+        var questionTemplate = Handlebars.compile(
+            $("#question-template").html());
+        var exampleQuestion = 
+        {
+          "text":"this is an example multiple choice question with one correct answer",
+          "images" : ["123234","123234","123234"],
+          "answers": [
+            {
+              "text":"answer one",
+              "correct":true
+            },
+            {
+              "text":"answer two",
+              "correct":false
+            }
+          ],
+          "type":"multiplechoice"
+        };
+        var questionHtml = questionTemplate(exampleQuestion);
+        $("body").append(questionHtml);
+      });
+
+    </script>
+    <script id="question-template" type="text/x-handlebars-template" >
+        <div class="question question-type{{type}}">
+          <p>{{text}}</p>
+          <ul>
+            {{#each answers}}
+            <li>
+              <p>{{text}}</p>
+            </li> 
+            {{/each}}
+          </ul>
+        </div>
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
