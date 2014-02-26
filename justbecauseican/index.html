@@ -1,0 +1,75 @@
+<!doctype HTML>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r61/three.min.js"></script>
+</head>
+<body>
+<script>
+  var div = $("<div>")
+    .css('width',500)
+    .css('height',300)
+    .appendTo($('body'))[0];
+  var width    = div.offsetWidth;
+  var height   = div.offsetHeight;
+
+  var renderer = new THREE.WebGLRenderer();
+  renderer.setClearColor(0xffffff,1);
+  renderer.setSize(width, height);
+  renderer.shadowMapEnabled = true;
+  renderer.shadowMapSoft = true;
+
+  div.appendChild(renderer.domElement);
+
+  var camera = new THREE.PerspectiveCamera(70,width/height,0.1,10000);
+  camera.position.z = 35;
+
+  var scene = new THREE.Scene();
+  
+  var ambientLight = new THREE.AmbientLight(0x444444);
+  scene.add(ambientLight);
+  
+  var directionalLight = new THREE.DirectionalLight(0xffffff);
+  directionalLight.position.set(0, 30, 100);
+  directionalLight.castShadow = true;
+  directionalLight.shadowDarkness = 0.8;
+  directionalLight.shadowMapWidth = directionalLight.shadowMapHeight = 1024*2;
+//  directionalLight.shadowCameraVisible = true;
+  scene.add(directionalLight);
+
+  var object;
+  var loader = new THREE.JSONLoader();
+  loader.load("logo.js", function(geometry,materials){
+    object = new THREE.Object3D(); 
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+    mesh.position.set(-3,0,0);
+    object.add(mesh);
+    object.scale.set(10,10,10);
+    object.position.set(-20,0,-20);
+//    object.rotateOnAxis(new THREE.Vector3(1,0,0),-0.5);
+    object.castShadow = true;
+    object.receiveShadow = false;
+    scene.add(object);
+    animate();
+  });
+
+//  var plane = new THREE.Mesh(new THREE.PlaneGeometry(200,200,10,10),new THREE.MeshLambertMaterial());
+//  plane.position.set(0,0,-30);
+//  plane.castShadow = false;
+//  plane.receiveShadow = true;
+//  scene.add(plane);
+//  var mesh = new THREE.Mesh(new THREE.CubeGeometry(10,10,10), new THREE.MeshLambertMaterial());
+//  scene.add(mesh);
+
+  var frame = 0;
+  var animate = function(){
+    object.rotation.set(0,0,0);
+//    object.rotateOnAxis(new THREE.Vector3(1,0,0),-0.5);
+    object.rotateOnAxis(new THREE.Vector3(0,1,0),-0.1+0.2*Math.sin(frame++/100));
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+
+</script>
+</body>
+</html>
