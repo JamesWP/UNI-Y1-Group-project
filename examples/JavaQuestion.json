@@ -1,0 +1,206 @@
+{
+  "text": "what is meaning of the symbol && ?"
+  "answer": [
+    {
+      "text":"and"
+      "correct":true
+    }
+    {
+      "text":"or"
+      "correct":false
+    }
+    {
+      "text":"not"
+      "correct":false
+    }
+    {
+      "text":"compile"
+      "correct":false
+    }
+  ] 
+  "type":"mutiplechoice"
+}
+
+{
+  "text":"Consider the following fragment of code:
+          
+          int temp, a = 1, b = 2;
+          temp = a;
+          b = a;
+          a = temp;
+
+          Which one of the following gives the values contained by the variables ’a’ and ’b’ after the above code is run?"
+  "answer": [
+    {
+      "text":"a = 1 and b = 1"
+      "correct":true
+    }
+    {
+      "text":"a = 1 and b = 2"
+      "correct":false
+    }
+    {
+      "text":"a = 2 and b = 1"
+      "correct":false
+    }
+    {
+      "text":"a = 2 and b = 2"
+      "correct":false
+    }
+    {
+      "text":"a = 2 and b = 2"
+      "correct":false
+    }
+  ] 
+  "type":"mutiplechoice"
+}
+
+{
+  "text":"Which one of the following is an illegal array declaration?"
+  "answer": [
+    {
+      "text":"int [] a;"
+      "correct":false
+    }
+    {
+      "text":"int [] a = new int[0]"
+      "correct":false
+    }
+    {
+      "text":"int [] a = new int[10]"
+      "correct":false
+    }
+    {
+      "text":"int [a] = new int[5]"
+      "correct":true
+    }
+    {
+      "text":"int [] a = new int[112358]"
+      "correct":false 
+    }
+  ] 
+  "type":"mutiplechoice"
+}
+
+{
+  "text":"Is this symbol || means or?"
+  "answer":true
+  "type":"truefalse"
+}
+
+{
+  "text":"what is function of word void in the main method?"
+  "answer": [
+    {
+      "text":"This main part can still return a value"
+      "correct":false
+    }
+    {
+      "text":"This main part can not return a value"
+      "correct":true
+    }
+    {
+      "text":"Like computer memory to remember things"
+      "correct":false
+    }
+    {
+      "text":"program arguments are passed to main method"
+      "correct":false
+    }
+  ] 
+  "type":"mutiplechoice"
+}
+
+{
+  "text":"Instances of classes are initialised via constructors. Which one of the following statements is TRUE?"
+  "answer": [
+    {
+      "text":"A class can have more than one constructor, as long as they have a different number of arguments, or the arguments have different types."
+      "correct":true
+    }
+    {
+      "text":"A class can have more than one constructor, but only one of them can be a void method."
+      "correct":false
+    }
+    {
+      "text":"A class can have more than one constructor, as long as they all have different names."
+      "correct":false
+    }
+    {
+      "text":"A class can have more than one constructor, but only if they each have a different number of arguments."
+      "correct":false
+    }
+    {
+      "text":"A class can have more than one constructor, as long as they have the same number and types of arguments."
+      "correct":false 
+    }
+  ] 
+  "type":"mutiplechoice"
+}
+
+{
+  "text":"Is this symbol x++ means x = x + x"
+  "answer":false
+  "type":"truefalse"
+}
+
+{
+  "text":"If the answer have decimal number, which type should be used?"
+  "answer": [
+    {
+      "text":"int"
+      "correct":false
+    }
+    {
+      "text":"double"
+      "correct":true
+    }
+    {
+      "text":"boolean"
+      "correct":false
+    }
+    {
+      "text":"string"
+      "correct":false
+    }
+  ] 
+  "type":"mutiplechoice"
+}
+
+{
+  "text";"Consider the following program fragment:
+          
+          System.out.println( 1 + 2 + 3 + 4 + 5 + "-hello-" + (6 + 7 + 8 + 9) );
+
+          Which one of the following will be displayed when the above fragment is run?"
+
+  "answer": [
+    {
+      "text":"12345-hello-6789"
+      "correct":false
+    }
+    {
+      "text":"15-hello-30"
+      "correct":true
+    }
+    {
+      "text":"12345-hello-30"
+      "correct":false
+    }
+    {
+      "text":"15-hello-6789"
+      "correct":false
+    }
+    {
+      "text":"12345--6789"
+      "correct":false 
+    }
+  ] 
+  "type":"mutiplechoice"
+}
+
+{
+  "text":"Is this condition 5 != 5 correct?"
+  "answer":false
+  "type":"truefalse"
+}
