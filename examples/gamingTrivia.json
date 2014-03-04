@@ -53,7 +53,7 @@
 
 {
   "text":"What was the first Pokemon that Ash Ketchum recieved?",
-  "answers:"[
+  "answers":[
     {
       "text":"Pikachu",
       "correct":true
@@ -87,7 +87,7 @@
 }
 
 {
-  "Text":"The R in RPG (gaming acronym) stands for what?",
+  "text":"The R in RPG (gaming acronym) stands for what?",
   "answers":[
     {
       "text":"Role",
@@ -99,8 +99,8 @@
 }
 
 {
-  "Text":"ArenaNet created which MMORPG?",
-  "answers:"[
+  "text":"ArenaNet created which MMORPG?",
+  "answers":[
     {
       "text":"Star Wars: The Old Republic",
       "correct":false
@@ -123,7 +123,7 @@
   
 {
   "text":"Enix Corporation merged with which rival company in 2003?",
-  "answers:"[
+  "answers":[
     {
       "text":"Square Soft",
       "correct":true
