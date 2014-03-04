@@ -1,84 +1,106 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<style>
-		#questionCreator .answers{
-			background:#aaa;
-		}
-		#questionCreator input[type="radio"]:checked+.answers{
-			background:#fff;
-		}
-	</style>
+  <style>
+  	#questionCreator .answers{
+  		background:#aaa;
+  	}
+  	#questionCreator input[type="radio"]:checked+.answers{
+  		background:#fff;
+  	}
+  </style>
   </head>
   <body>
     <form id="questionCreator" action="#" method="get">
-	  <label>Question Text</label>
-	  <input type="text" class="questionText"/>
-	     <label>Question Type</label>
-	  <div class="questionType">
-	    <label>Multiple Choice</label>
-	    <input type="radio" name="questionType" data-questiontype="multiplechoice" />
-	    <div class="multipleAnswerInput answers">
-			<div class="answerInput">
-			  <input type="text" name="answer" />
-			  <select>
-				<option value="" selected>---</option>
-				<option value="true">Correct</option>
-				<option value="false">Incorrect</option>
-			  </select>
-			</div>
-			<button type="button" class="another">Add another answer</button>
-			<button type="button" class="remove">Remove answer</button>
+    <label>Question Text</label>
+    <input type="text" class="questionText"/>
+       <label>Question Type</label>
+    <div class="questionType">
+      <label>Multiple Choice</label>
+      <input type="radio" name="questionType" data-questiontype="multiplechoice" />
+      <div class="multipleAnswerInput answers">
+  		<div class="answerInput">
+  		  <input type="text" name="answer" />
+  		  <select>
+  			<option value="" selected>---</option>
+  			<option value="true">Correct</option>
+  			<option value="false">Incorrect</option>
+  		  </select>
+  		</div>
+  		<button type="button" class="another">Add another answer</button>
+  		<button type="button" class="remove">Remove answer</button>
         </div>
       </div>
       <div class="questionType">
-	    <label>Fill in th blanks</label>
-	    <input type="radio" name="questionType" data-questiontype="blanks" />
-	    <div class="multipleAnswerInput answers">
-			<div class="answerInput">
-			  <input type="text" name="answer" />
-			  <select>
-				<option value="" selected>---</option>
-				<option value="true">Correct</option>
-				<option value="false">Incorrect</option>
-			  </select>
-			</div>
-			<button type="button" class="another">Add another answer</button>
-			<button type="button" class="remove">Remove answer</button>
-        </div>
-	  </div>
-	  <div class="questionType">
-	    <label>True False</label>
-	    <input type="radio" name="questionType" data-questiontype="truefalse" />
-	    <div class="trueFalseAnswerInput answers">
-		  <select>
-		    <option value="" selected>---</option>
-		    <option value="true">True</option>
-		    <option value="false">False</option>
-	      </select>
-		</div>
-	  </div>
-	</form>	
-	<script src="lib/jquery.js"></script>
-	<script>
-	  $form = $("#questionCreator");
-	  $('.another',$form).click(function(){
-		$this = $(this);
-		$lastAnswer = $this.closest(".multipleAnswerInput").children(".answerInput").last()
-		$lastAnswer.clone().insertAfter($lastAnswer)
-	  });
-	  $('.remove',$form).click(function(){
-		$answers = $(this).closest('.multipleAnswerInput').children(".answerInput")
-		if($answers.size()>1)
-		  $answers.last().remove()
-	  });
-	  var getJson = function($form){
-		var obj = {};
-		obj.text = $('.questionText',$form).val();
-		obj.type = $("input[name='questionType']:checked",$form).attr("data-questiontype");
-		return obj;
-	  }
-
-	</script>
+      <label>Fill in the blanks</label>
+      <input type="radio" name="questionType" data-questiontype="blanks" />
+      <div class="multipleAnswerInput answers">
+  		<div class="answerInput">
+  		  <input type="text" name="answer" />
+  		    <select>
+  		    	<option value="" selected>---</option>
+  			    <option value="true">Correct</option>
+  			    <option value="false">Incorrect</option>
+  		    </select>
+  		  </div>
+  		  <button type="button" class="another">Add another answer</button>
+  		  <button type="button" class="remove">Remove answer</button>
+      </div>
+    </div>
+    <div class="questionType">
+      <label>True False</label>
+      <input type="radio" name="questionType" data-questiontype="truefalse" />
+      <div class="trueFalseAnswerInput answers">
+  	    <select>
+  	      <option value="" selected>---</option>
+  	      <option value="true">True</option>
+  	      <option value="false">False</option>
+        </select>
+  	</div>
+    </div>
+  </form>	
+  <script src="lib/jquery.js"></script>
+  <script>
+    $form = $("#questionCreator");
+    $('.another',$form).click(function(){
+  	  $this = $(this);
+    	$lastAnswer = $this.closest(".multipleAnswerInput").children(".answerInput").last()
+    	$lastAnswer.clone().insertAfter($lastAnswer)
+    });
+    $('.remove',$form).click(function(){
+  	  $answers = $(this).closest('.multipleAnswerInput').children(".answerInput");
+  	  if($answers.size()>1)
+  	    $answers.last().remove()
+    });
+    var getJson = function($form){
+  	  var obj = {};
+  	  obj.text = $('.questionText',$form).val();
+  	  obj.type = $("input[name='questionType']:checked",$form).attr("data-questiontype");
+  	  if(obj.type=="truefalse"){
+        var answer = $('input[data-questiontype="truefalse"]+.answers select',$form).val();
+        if(answer=="true"||answer=="false")
+          obj.answer = answer=="true";
+        else
+          throw new Error("you must select true or false"); 
+      }else{
+        $answers = $('input[name="questionType"]:checked+.answers .answerInput',$form);
+        obj.answers = $answers.map(function(){
+          $this = $(this);
+          var correct = $this.find("select").val();
+          if (correct != "true" && correct != "false")
+            throw new Error("you must select correct or incorrect for each answer");
+          correct = correct == "true";
+          var text = $this.find("input").val();
+          if(text.length<1)
+            throw new Error("you must enter text for each answer");
+          return {
+            text:text,
+            correct:correct
+          };
+        }).get();
+      }
+      return obj;
+    }
+  </script>
   </body>
 </html>
