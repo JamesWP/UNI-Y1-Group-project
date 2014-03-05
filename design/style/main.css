@@ -24,3 +24,11 @@ body {
   margin-top:40px;
   margin-bottom:40px;
 }
+.navbar-default {
+  background-color: #428BCA;
+  border-color: #428BCA;
+
+}
+.navbar .nav > li > a {
+    color:  #FFF;
+}

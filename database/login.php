@@ -5,9 +5,6 @@
 	$database_host = "dbhost.cs.man.ac.uk";
 	$database_user = "mbax2ip4";
 	$database_pass = "vanillacupcake";
-	$database_name = "mbax2ip4";
-	$group_dbnames = array("2013_comp10120_w2");
-
 	
 	$con = new mysqli($database_host , $database_user, $database_pass, "2013_comp10120_w2");
 
@@ -15,7 +12,8 @@
 	if (mysqli_connect_errno())
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 
-	function loginCheck($con, $user, $password) {	
+	function loginCheck($user, $password) {
+		global $con;	
 		$userID = mysqli_fetch_array(mysqli_query($con, "SELECT userID FROM `User` WHERE name = '$user'"));
 		$userID = $userID['userID'];
 
@@ -49,7 +47,9 @@
 	if (isset($_REQUEST['password']))
 	$password = mysqli_real_escape_string($con, $_REQUEST['password']);
 
-	loginCheck($con, $user, $password);
+	loginCheck($user, $password);
+
+	mysqli_close($con);
 
 	
 	// session_destroy();
