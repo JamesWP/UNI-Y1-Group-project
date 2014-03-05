@@ -1,0 +1,4 @@
+login (username, pwd) -> userID/false
+create user(user, pwd) -> true/false
+getSubjects
+getDecks
