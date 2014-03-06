@@ -22,6 +22,7 @@
 
 	function create($user, $password) {
 		global $con;
+		$password =  md5($password);
 		$create = mysqli_query($con, "INSERT INTO `User` (name, password)
 									  VALUES ('$user', '$password')");
 									  // to be modified later on to accept pictures & description	
