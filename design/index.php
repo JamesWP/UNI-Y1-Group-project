@@ -1,3 +1,7 @@
+<?php
+session_save_path("../database/sessions/");
+session_start(); ?>
+
 <!DOCTYPE html>
 
 <html>
@@ -18,7 +22,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"> <img class="img-responsive" style="margin-top:-12px;" src="images/flipup_logo.png"/> </a>
+            <a class="navbar-brand" href="index.php"> <img class="img-responsive" style="margin-top:-12px;" src="images/flipup_logo.png"/> </a>
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -27,7 +31,7 @@
               <li><a href="#contact">Create your own</a></li>
             </ul>
       <?php
-      if (!$_SESSION)
+      if ($_SESSION["loggedin"] != 1)
       {
       ?>
 
@@ -48,8 +52,20 @@
 
 			  </div>
           </li>
-        </ul>
-        <?php } ?>
+        </ul>
+        <?php } 
+       
+        else
+          {
+        ?>
+        <ul class="nav navbar-nav navbar-right">
+          <li>Welcome,&nbsp;<?php echo $_SESSION["user"];?></li>
+          <li><a href="../database/sign-out.php">Sign out</a></li>
+          <li class="divider-vertical"></li>  
+        </ul>
+        <?php
+          }
+        ?>
           </div><!--/.nav-collapse -->
         </div>
       </div> 

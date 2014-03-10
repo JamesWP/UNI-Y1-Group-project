@@ -32,18 +32,17 @@
 			echo "Account successfully created!";
 	} // create
 
-
-	if (isset($_REQUEST['user']))
-	$user = mysqli_real_escape_string($con, $_REQUEST['user']);
-
-	if (isset($_REQUEST['password']))
-	$password = mysqli_real_escape_string($con, $_REQUEST['password']);
-
-	// to be modified later on to accept pictures & description
-
 	if (available($user) == true)
 		create($user, $password);
 
+	if (isset($_REQUEST['user']))
+		$user = mysqli_real_escape_string($con, $_REQUEST['user']);
+
+	if (isset($_REQUEST['password']))
+		$password = mysqli_real_escape_string($con, $_REQUEST['password']);
+
+	// to be modified later on to accept pictures & description
+		
 	mysqli_close($con);
 
 ?>

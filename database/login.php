@@ -1,6 +1,5 @@
 <?php
-
-	// session_start();
+	
 
 	$database_host = "dbhost.cs.man.ac.uk";
 	$database_user = "mbax2ip4";
@@ -22,8 +21,13 @@
 			$hash = mysqli_fetch_array(mysqli_query($con, "SELECT password FROM `User` WHERE name = '$user'"));
 			$hash = $hash['password'];
 
-			if((password_verify($password, $hash)))
-				echo "Brilliant! Your user ID is $userID!";
+			if((password_verify($password, $hash))) {
+				session_save_path("sessions/");				
+				session_start();
+				$_SESSION["loggedin"] = 1;
+				$_SESSION["user"] = $user;
+				header("Location: ../design/index.php");
+			}
 			else
 				echo "Wrong password!";
 		}
@@ -39,8 +43,6 @@
 	} // password_verify
 
 
-
-
 	if (isset($_REQUEST['user']))
 	$user = mysqli_real_escape_string($con, strtolower($_REQUEST['user']));
 
@@ -51,6 +53,4 @@
 
 	mysqli_close($con);
 
-	
-	// session_destroy();
 ?>
