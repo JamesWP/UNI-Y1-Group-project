@@ -4,11 +4,11 @@
 	include '../application/app.php';
 
 
-	if (isset($_REQUEST['user']))
-	$user = mysqli_real_escape_string($con, strtolower($_REQUEST['user']));
+	if (isset($_POST['user']))
+	$user = mysqli_real_escape_string($con, strtolower($_POST['user']));
 
-	if (isset($_REQUEST['password']))
-	$password = mysqli_real_escape_string($con, $_REQUEST['password']);
+	if (isset($_POST['password']))
+	$password = mysqli_real_escape_string($con, $_POST['password']);
 
 	loginCheck($user, $password);
 
