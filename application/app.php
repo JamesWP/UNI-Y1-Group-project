@@ -65,6 +65,28 @@
 
 
 
+	// ------------------------------------------ get subjects ---------------------------------------------
+	function getSubjects() {
+		$subjects = mysqli_query($con, "SELECT name from `Subject` ORDER BY name LIMIT 5");
+
+		while ($row = (mysqli_fetch_row($subjects))) {
+			print_R($row[0]);;
+		}
+	} // getSubjects
+	// -----------------------------------------------------------------------------------------------------
+	
+
+	// ------------------------------------------- get decks -----------------------------------------------
+	function getDecks() {
+		$decks = mysqli_query($con, "SELECT name from `Deck` ORDER BY rating, name LIMIT 5");
+
+		while ($row = (mysqli_fetch_row($decks))) {
+			print_R($row[0]);;
+		}
+	} // getDecks
+	// -----------------------------------------------------------------------------------------------------
+
+
 	function pageInit(){
 	  session_save_path("../database/sessions/");
 	  session_start();
