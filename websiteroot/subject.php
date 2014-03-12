@@ -11,10 +11,6 @@
 
 <?php pageHead(); ?>
   <div class="container">
-    <div id=flipup-logo class="row">
-      <div class="col-md-8 col-md-offset-2 pagination-centered">
-      </div>
-    </div>
     <div class="row">
       <h3>Subject: <?php echo $subjectInfo['name']; ?></h3>
     </div>
