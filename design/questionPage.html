@@ -13,16 +13,20 @@
   width: 450px;
   height: 281px;
   z-index: 1;
-  }
-  #f1_container {
+}
+#f1_container {
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
   -o-perspective: 1000px;
   perspective: 1000px;
-  }
-  #f1_card {
-  width: 100%;
-  height: 100%;
+}
+  
+  
+input{display:none}
+
+.f1_card {
+    width:100%;
+    height:100%;
   -webkit-transform-style: preserve-3d;
   -webkit-transition: all 0.5s linear;
   -moz-transform-style: preserve-3d;
@@ -31,24 +35,28 @@
   -o-transition: all 0.5s linear;
   transform-style: preserve-3d;
   transition: all 0.5s linear;
-  }
-  #f1_container:hover #f1_card, #f1_container.hover_effect #f1_card {
+    display:block;
+}
+    
+input:checked + .f1_card{
   -webkit-transform: rotateX(180deg);
   -moz-transform: rotateX(180deg);
   -o-transform: rotateX(180deg);
   transform: rotateX(180deg);
+} 
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
-  .face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-  .face.back {
-   display: block;
+
+.face.back {
+  display: block;
   -webkit-transform: rotateX(180deg);
   -webkit-box-sizing: border-box;
   -moz-transform: rotateX(180deg);
@@ -58,8 +66,7 @@
   transform: rotateX(180deg);
   box-sizing: border-box;
   padding: 10px;
-  text-align: center;
-  }
+}
   </style>
 </head>
 
@@ -105,24 +112,27 @@
       </div> 
       <div class="container">
         <!-- Im adding code here!-->
-        <div id="f1_container">
-          <div id="f1_card" class="shadow">
-            <div class="front face">
-              <div class="jumbotron">
-                <h1 class="text-center"> Question Text Here!</h1>
-                <p class = "text-center">This is where either a dropdown menu goes or a text entry!</p>      
+<div id=f1_container>
+<input type="checkbox" id="button">
+<label class="f1_card" for="button">
+  <div class="front face">
+    <div class="jumbotron">
+      <h1 class="text-center"> Question Text Here!</h1>
+      <p class = "text-center">This is where either a dropdown menu goes or a text entry!</p>      
 
-                <p><a href="#" class="btn btn-primary btn-lg" role="button">Submit Answer</a></p>
-              </div>
-            </div>
-            <div class="back face center">
-              <div class="jumbotron">
-                <h1 class="text-center"> You were (In)Correct!</h1>
-                <p class = "text-center">The answer is blablabla! You answered blabla!</p>      
-              </div>
-            </div>
-          </div>
-        </div>
+      <label class="f1_card" for="button">
+      <p><a href="#" class="btn btn-primary btn-lg" role="button">Submit Answer</a></p>
+      </label>
+    </div>
+  </div>
+  <div class="back face center">
+    <div class="jumbotron">
+      <h1 class="text-center"> You were (In)Correct!</h1>
+      <p class = "text-center">The answer is blablabla! You answered blabla!</p>      
+    </div>
+  </div>
+</label>
+</div>
         <!--Not adding any more code outside of this! -->
       </div>
     </div>
