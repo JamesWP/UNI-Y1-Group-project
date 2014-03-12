@@ -1,9 +1,13 @@
 <?php
 
-	define(BASEURL, "http://webdev.cs.manchester.ac.uk/~mbax2ip4/websiteroot/");
-
-	// this is where fran should link her functions and files together
-
+define(SERVER,php_uname('n'));
+/*** ENVIRONMENT ***/
+if (SERVER=='jair'){
+  define(BASEURL, "http://localhost/flipupweb/");
+}else{
+  define(BASEURL, "http://webdev.cs.manchester.ac.uk/~mbax2ip4/websiteroot/");
+}
+/*** ENVIRONMENT ***/
 
 	// ---------------------------------------- connect to the DB ------------------------------------------
 	function connectDB() {
@@ -119,9 +123,34 @@
 	} // getDecks
 	// -----------------------------------------------------------------------------------------------------
 
+  // -------
+  function getDecks($subjectID){
+    global $con;
+    $result = mysqli_query($con, <<<SQL
+    SELECT d.deckID as id,d.name as name,u.name as user,d.rating as rating,count(q.quizID) as total
+    FROM Deck as d
+    LEFT JOIN User as u on u.userID = d.userID
+    LEFT JOIN Quiz as q on q.deckID = d.deckID
+    WHERE d.subjectID = $subjectID
+    GROUP BY d.deckID,d.name,u.name,d.rating
+SQL
+);
+		while($deck = mysqli_fetch_array($result)) {
+			$decks[] = $deck;
+		}
+		return $decks;
+  } // getDecks
 
-	function pageInit(){
-	  session_save_path("../database/sessions/");
+  function getSubjectInfo($subjectID){
+    global $con;
+    $result = mysqli_query($con,"select name,subjectID as id from Subject where subjectID = $subjectID");
+
+    return mysqli_fetch_array($result);
+  }
+
+  function pageInit(){
+    if(SERVER!='jair')
+      session_save_path("../database/sessions/");
 	  session_start();
 	}
 
@@ -147,6 +176,10 @@
 	  return BASEURL."subject.php?id=".$subjectID;
 	}
 
-	function getBaseUrl(){
+  function getQuizLinkForDeck($deckID){
+    return '#';
+  }
+
+  function getBaseUrl(){
 	  return BASEURL;
 	}
