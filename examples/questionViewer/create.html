@@ -34,7 +34,6 @@
       <div class="questionType">
       <label>Fill in the blanks</label>
       <input type="radio" name="questionType" data-questiontype="blanks" />
-      <input type="input" name="editdistance" />
       <div class="multipleAnswerInput answers">
   		<div class="answerInput">
   		  <input type="text" name="answer" />
@@ -62,7 +61,6 @@
   </form>	
   <script src="lib/jquery.js"></script>
   <script>
-    /* setup for events */
     $form = $("#questionCreator");
     $('.another',$form).click(function(){
   	  $this = $(this);
@@ -74,8 +72,6 @@
   	  if($answers.size()>1)
   	    $answers.last().remove()
     });
-
-    /* save and load for the form */
     var getJson = function($form){
   	  var obj = {};
   	  obj.text = $('.questionText',$form).val();
@@ -87,13 +83,7 @@
         else
           throw new Error("you must select true or false"); 
       }else{
-        $section = $('input[name="questionType"]:checked',$form).parent();
-        $answers = $('.answers .answerInput',$section);
-        if($section.find("input[name='editdistance']").size()>0){
-          obj.editdistance = parseInt($section.find("input[name='editdistance']").val());
-          if(isNaN(obj.editdistance))
-            throw new Error("you must provide a number for the editdistance");
-        }
+        $answers = $('input[name="questionType"]:checked+.answers .answerInput',$form);
         obj.answers = $answers.map(function(){
           $this = $(this);
           var correct = $this.find("select").val();
@@ -111,206 +101,6 @@
       }
       return obj;
     }
-
-    /* loader also tests saving for equality */
-    var loadJson = function(obj,$form){
-      $('.questionText',$form).val(obj.text);
-      $('input[name="questionType"]').prop('checked',false);
-      $('input[data-questiontype="'+obj.type+'"]',$form).prop('checked',true);
-      if(obj.type=="truefalse"){
-        if(obj.answer)
-          $('input[data-questiontype="truefalse"]+.answers select',$form).val("true");
-        else
-          $('input[data-questiontype="truefalse"]+.answers select',$form).val("false");
-      }else{
-        $section = $('input[data-questiontype="'+obj.type+'"]').parent();
-        if(obj['editdistance']!=undefined)
-          $section.find("input[name='editdistance']").val(obj.editdistance);
-        $answers =$('.answers',$section);
-        $answer = $answers.find(".answerInput").first().clone();
-        $answers.find(".answerInput").remove();
-        $.each(obj.answers,function(){
-          var answer = this;
-          var $newanswer = $answer.clone();
-          $newanswer.find("select").val("" + answer.correct);
-          $newanswer.find("input").val(answer.text);
-          $answers.append($newanswer);
-        });
-      }
-      var test = objectEquals(getJson($form),obj);
-      if(!test)
-        throw new Error("load test failed;");
-    }
-
-    /* borrowed form stack overflow javascript object deep comparison*/
-    var objectEquals = function(obj1,obj2){
-      var p;
-      for(p in obj1) {
-        if(typeof(obj2[p])=='undefined') {return false;}
-      }
-      for(p in obj1) {
-        if (obj1[p]) {
-          switch(typeof(obj1[p])) {
-            case 'object':
-              if (!objectEquals(obj1[p],obj2[p])) { return false; } break;
-            case 'function':
-              if (typeof(obj2[p])=='undefined' ||
-                          (p != 'equals' && obj1[p].toString() != obj2[p].toString()))
-                return false;
-              break;
-            default:
-              if (obj1[p] != obj2[p]) { return false; }
-          }
-        } else {
-          if (obj2[p])
-            return false;
-        }
-      }
-      for(p in obj2) {
-        if(typeof(obj1[p])=='undefined') {return false;}
-      }
-      return true;
-    }
-    
-    var questions = [ 
-      {   
-        "text":"Which long-running game serious was spawned by a company's last attempt at making a game before closing?",
-        "answers":[
-          {
-            "text":"Mega Man",
-            "correct":false
-          },
-          {
-            "text":"Dragon Quest",
-            "correct":false
-          },
-          {
-            "text":"Persona",
-            "correct":false
-          },
-          {
-            "text":"Final Fantasy",
-            "correct":true
-          }
-        ],
-        "type":"multiplechoice"
-      },
-      {
-        "text":"Minecraft was created by Jeb.",
-        "answer":false,
-        "type":"truefalse"
-      },
-      {
-        "text":"The theme to Pac-man is called Korobeiniki.",
-        "answer":false,
-        "type":"truefalse"
-      },
-      {
-        "text":"The ghosts in pacman are called Inky, Blinky, Pinky and ____?",
-        "answers":[
-          {
-            "text":"Clyde",
-            "correct":true
-          }
-        ],
-        "type":"blanks",
-        "editdistance":1
-      },
-      {
-        "text":"In Pac-man, each ghost has its own distinct AI.",
-        "answer":true,
-        "type":"truefalse"
-      },
-      {
-        "text":"What was the first Pokemon that Ash Ketchum recieved?",
-        "answers":[
-          {
-            "text":"Pikachu",
-            "correct":true
-          },
-          {
-            "text":"Pidgey",
-            "correct":false
-          },
-          {
-            "text":"Augumon",
-            "correct":false
-          },
-          {
-            "text":"Bulbasaur",
-            "correct":false
-          }
-        ],
-        "type":"multiplechoice"
-      },
-      {
-        "text":"What is the name of the protagonist in The Legend of Zelda?",
-        "answers":[
-          {
-            "text": "Link",
-            "correct":true
-          }
-        ],
-        "type":"blanks",
-        "editdistance":0
-      },
-      {
-        "text":"The R in RPG (gaming acronym) stands for what?",
-        "answers":[
-          {
-            "text":"Role",
-            "correct":true
-          }
-        ],
-        "type":"blanks",
-        "editdistance":0
-      },
-      {
-        "text":"ArenaNet created which MMORPG?",
-        "answers":[
-          {
-            "text":"Star Wars: The Old Republic",
-            "correct":false
-          },
-          {
-            "text":"Runescape",
-            "correct":false
-          },
-          {
-            "text":"Guild Wars 2",
-            "correct":true
-          },
-          {
-            "text":"World of Warcraft",
-            "correct":false
-          }
-        ],
-        "type":"multiplechoice"
-      },
-      {
-        "text":"Enix Corporation merged with which rival company in 2003?",
-        "answers":[
-          {
-            "text":"Square Soft",
-            "correct":true
-          },
-          {
-            "text":"Nintendo",
-            "correct":false
-          },
-          {
-            "text":"Bethesda Softworks",
-            "correct":false
-          },
-          {
-            "text":"Kairosoft",
-            "correct":false
-          },
-        ],
-        "type":"multiplechoice"
-      }];
-    for(var i = 0 ; i < questions.length ; i++)
-      loadJson(questions[i],$form);
   </script>
   </body>
 </html>
