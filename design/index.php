@@ -1,0 +1,114 @@
+<?php
+session_save_path("../database/sessions/");
+session_start(); ?>
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Flipup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <link href="style/main.css" rel='stylesheet' media=screen />
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.php"> <img class="img-responsive" style="margin-top:-12px;" src="images/flipup_logo.png"/> </a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+              <li><a href="#about">Subjects</a></li>
+              <li><a href="#contact">Create your own</a></li>
+            </ul>
+      <?php
+      if ($_SESSION["loggedin"] != 1)
+      {
+      ?>
+
+			<ul class="nav navbar-nav navbar-right">
+          <li><a href="login_page.html">Sign Up</a></li>
+          <li class="divider-vertical"></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+            <div class="dropdown-menu" style="padding: 15px; padding-bottom: 15px;">
+              <!-- Login form here -->
+				<form action="../database/login.php" method="post" accept-charset="UTF-8">
+				<input id="user" style="margin-bottom: 15px;" type="text" name="user" placeholder="Username" size="30" />
+				<input id="password" style="margin-bottom: 15px;" type="password" name="password" placeholder="Password" size="30" />
+				<input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" value="1" />
+				<label class="string optional" for="user_remember_me"> Remember me</label>
+				<input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
+				</form>
+
+			  </div>
+          </li>
+        </ul>
+        <?php } 
+       
+        else
+          {
+        ?>
+        <ul class="nav navbar-nav navbar-right">
+          <li>Welcome,&nbsp;<?php echo $_SESSION["user"];?></li>
+          <li><a href="../database/sign-out.php">Sign out</a></li>
+          <li class="divider-vertical"></li>  
+        </ul>
+        <?php
+          }
+        ?>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div> 
+      <div class="container">
+        <div id=flipup-logo class="row">
+          <div class="col-md-8 col-md-offset-2 pagination-centered">
+            <img class="img-responsive" src="images/flipup.png"/> 
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 list-group">
+            <a href="#" class='list-group-item active'>Subjects</span></a>
+            <a href="#" class='list-group-item'>Computer science <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+            <a href="#" class='list-group-item'>French <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+            <a href="#" class='list-group-item'>Geography <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+            <a href="#" class='list-group-item'>Drama <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+            <a href="#" class='list-group-item'>For fun <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+          </div>
+          <div class="col-md-4 list-group">
+            <a href="#" class='list-group-item active'>Top Decks</span></a>
+            <a href="#" class='list-group-item'>Gaming trivia <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+            <a href="#" class='list-group-item'>Java Syntax <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+            <a href="#" class='list-group-item'>Romanian verbs <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+            <a href="#" class='list-group-item'>Software engineering <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+            <a href="#" class='list-group-item'>Music trivia <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+          </div>
+          <div class="col-md-4 list-group">
+            <a href="#" class='list-group-item active'>Subjects</span></a>
+            <a href="#" class='list-group-item'>Computer science <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+            <a href="#" class='list-group-item'>French <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+            <a href="#" class='list-group-item'>Geography <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+            <a href="#" class='list-group-item'>Drama <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+            <a href="#" class='list-group-item'>For fun <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div class=container>
+        <small>flipup &copy; 2014</small> 
+      </div>
+    </div>
+    <script src="lib/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -8,7 +8,7 @@
     <link href="style/main.css" rel='stylesheet' media=screen />
   </head>
   <body>
-    <div id=wrap>
+    <div id="wrap">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -26,6 +26,11 @@
               <li><a href="#about">Subjects</a></li>
               <li><a href="#contact">Create your own</a></li>
             </ul>
+      <?php
+      if (!$_SESSION)
+      {
+      ?>
+
 			<ul class="nav navbar-nav navbar-right">
           <li><a href="login_page.html">Sign Up</a></li>
           <li class="divider-vertical"></li>
@@ -33,16 +38,18 @@
             <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
             <div class="dropdown-menu" style="padding: 15px; padding-bottom: 15px;">
               <!-- Login form here -->
-				<form action="[YOUR ACTION]" method="post" accept-charset="UTF-8">
-				<input id="user_username" style="margin-bottom: 15px;" type="text" name="user[username]" placeholder="Username" size="30" />
-				<input id="user_password" style="margin-bottom: 15px;" type="password" name="user[password]" placeholder="Password" size="30" />
+				<form action="../database/login.php" method="post" accept-charset="UTF-8">
+				<input id="user" style="margin-bottom: 15px;" type="text" name="user" placeholder="Username" size="30" />
+				<input id="password" style="margin-bottom: 15px;" type="password" name="password" placeholder="Password" size="30" />
 				<input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" value="1" />
 				<label class="string optional" for="user_remember_me"> Remember me</label>
 				<input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
 				</form>
+
 			  </div>
           </li>
         </ul>
+        <?php } ?>
           </div><!--/.nav-collapse -->
         </div>
       </div> 
