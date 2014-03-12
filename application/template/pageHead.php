@@ -17,17 +17,17 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php"> <img class="img-responsive" style="margin-top:-12px;" src="images/flipup_logo.png"/> </a>
+            <a class="navbar-brand" href="<?php echo getBaseUrl(); ?>index.php"> <img class="img-responsive" style="margin-top:-12px;" src="images/flipup_logo.png"/> </a>
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
 
               <li><a href="<?php echo getBaseUrl(); ?>">Subjects</a></li>
-              <li><a href="#">Create your own</a></li>
+              <li><a href="<?php echo getBaseUrl(); ?>create-your-own.php">Create your own</a></li>
             </ul>
             <?php if ($_SESSION["loggedin"] != 1):?>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="login_page.html">Sign Up</a></li>
+              <li><a href="<?php echo getBaseUrl(); ?>signup-page.php">Sign Up</a></li>
               <li class="divider-vertical"></li>
               <li class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>

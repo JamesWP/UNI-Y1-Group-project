@@ -1,38 +1,7 @@
-<!DOCTYPE html>
-
-<html>
-  <head>
-    <title>Flipup</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-    <link href="style/main.css" rel='stylesheet' media=screen />
-    
-    <script type="text/javascript" src="WYSIWYG/WYSIWYG.js"></script>
-  </head>
-  <body onload="iFrameOn() ;">
-    <div id=wrap>
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html"> <img class="img-responsive" style="margin-top:-12px;" src="images/flipup_logo.png"/> </a>
-          </div>
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li><a href="#about">Subjects</a></li>
-              <li><a href="#contact">Create your own</a></li>
-            </ul>
-			 <ul class="nav navbar-nav navbar-right">
-              <h4 style="color:white;">"User Name"</h4>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
+<?php include '../application/app.php'; ?>
+<?php include '../database/connect.php'; ?>
+<?php pageInit(); ?>
+<?php pageHead(); ?>
         
       <div class="container">  
      	 <div class="page-header">
@@ -46,12 +15,12 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Multiple choice</a></li>
             <li><a href="#">Truth or false</a></li>
-            <li><a href="#">Fill in the blank</a></li>
+            <li><a href="#">Fill in the blanks</a></li>
           </ul>
        </div>
        </div>
        
-       <div class="container" style="margin:50px;"> 
+       <div class="col-lg-6" style="margin-top:50px; margin-left: 20%;"> 
          <!-- Buttons (bold, italic, image) -->
          <div id="wysiwyg_cp">
           <button id="boldButton" type="button" class="btn btn-primary" onClick="iBold()">
@@ -69,7 +38,7 @@
           <iframe name"richTextField" id="richTextField" style="margin:10px 0px 0px -14px; width:500px; height:250px;" placeholder="Enter question..."></iframe>
        </div>
        
-       <div class="container" style="margin:0px 0px 50px 35px;">
+       <div class="col-lg-6" style="margin-top:50px; margin-right: 20%;">
          <h4>Type your answers</h4>
          <form class="form-inline" role="form">
            <div class="form-group">
@@ -108,12 +77,4 @@
        </div> 
      </div> <!--/wrap -->
     
-    <div id="footer">
-      <div class=container>
-        <small>flipup &copy; 2014</small> 
-      </div>
-      </div>
-    <script src="lib/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-  </body>
-</html>
+<?php pageFoot(); ?>

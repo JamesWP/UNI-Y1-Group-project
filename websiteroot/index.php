@@ -1,16 +1,17 @@
 <?php include '../application/app.php'; ?>
+<?php include '../database/connect.php'; ?>
 <?php pageInit(); ?>
 <?php pageHead(); ?>
 
 <?php /* TODO need to gather data from database */
-  $subjects = [];
+  $subjects = array();
   $subjects[] = array("name"=>"Computer science","id"=>1);
   $subjects[] = array("name"=>"French","id"=>2);
   $subjects[] = array("name"=>"Geography","id"=>3);
   $subjects[] = array("name"=>"Drama","id"=>4);
   $subjects[] = array("name"=>"For fun","id"=>5);
 
-  $topdecks = [];
+  $topdecks = array();
   $topdecks[] = array("name"=>"Gaming trivia","id"=>1);
   $topdecks[] = array("name"=>"Java Syntax","id"=>2);
   $topdecks[] = array("name"=>"Romanian verbs","id"=>3);
