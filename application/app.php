@@ -4,6 +4,33 @@
 
 	// this is where fran should link her functions and files together
 
+
+	// ---------------------------------------- connect to the DB ------------------------------------------
+	function connectDB() {
+		global $con;
+		$database_host = "dbhost.cs.man.ac.uk";
+		$database_user = "mbax2ip4";
+		$database_pass = "vanillacupcake";
+
+		$con = new mysqli($database_host , $database_user, $database_pass, "2013_comp10120_w2");
+
+		/* Check connection */
+		if (mysqli_connect_errno())
+			die("Could not connect to DB.");
+	}
+	// -----------------------------------------------------------------------------------------------------
+	
+
+
+	// ------------------------------------- disconnect from the DB ----------------------------------------
+	function disconnectDB() {
+		global $con;
+		mysqli_close($con);
+	}
+	// -----------------------------------------------------------------------------------------------------
+
+
+
 	// -------------------------------------------- login --------------------------------------------------
 	function loginCheck($user, $password) {
 		global $con;	
@@ -20,7 +47,7 @@
 				session_start();
 				$_SESSION["loggedin"] = 1;
 				$_SESSION["user"] = $user;
-				header("Location: ../websiteroot/index.php");
+				header("Location: " . getBaseUrl() . "index.php");
 			}
 			else
 				echo "Wrong password!";
@@ -45,7 +72,7 @@
 	$userID = mysqli_fetch_array((mysqli_query($con, "SELECT userID FROM `User`
 													  WHERE name = '$user'")));
 	if ($userID['userID'] != null) 
-		echo "Username unavailable!";
+		return false;
 	else
 		return true;
 	} // available
@@ -57,36 +84,13 @@
 									  VALUES ('$user', '$password')");
 									  // to be modified later on to accept pictures & description	
 		if ($create == false)
-			echo "Fail. Please try again!";
-		else
-			echo "Account successfully created!";
+			die("Account failed to be created.");
+		else {
+			$usercreated = 1;
+			echo $usercreated;
+			header("Location: " . getBaseUrl() . "signup-page.php"); 
+		}
 	} // create
-	// -----------------------------------------------------------------------------------------------------
-
-
-
-	// ---------------------------------------- connect to the DB ------------------------------------------
-	function connectDB() {
-		global $con;
-		$database_host = "dbhost.cs.man.ac.uk";
-		$database_user = "mbax2ip4";
-		$database_pass = "vanillacupcake";
-
-		$con = new mysqli($database_host , $database_user, $database_pass, "2013_comp10120_w2");
-
-		/* Check connection */
-		if (mysqli_connect_errno())
-			die("Could not connect to DB.");
-	}
-	// -----------------------------------------------------------------------------------------------------
-	
-
-
-	// ------------------------------------- disconnect from the DB ----------------------------------------
-	function disconnectDB() {
-		global $con;
-		mysqli_close($con);
-	}
 	// -----------------------------------------------------------------------------------------------------
 
 
