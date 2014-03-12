@@ -1,9 +1,8 @@
 <?php include '../application/app.php'; ?>
 <?php pageInit(); ?>
-<?php pageHead(); ?>
 
 <?php /* TODO need to gather data from database */
-  $subjects = array();
+  /* $subjects = array();
   $subjects[] = array("name"=>"Computer science","id"=>1);
   $subjects[] = array("name"=>"French","id"=>2);
   $subjects[] = array("name"=>"Geography","id"=>3);
@@ -15,8 +14,17 @@
   $topdecks[] = array("name"=>"Java Syntax","id"=>2);
   $topdecks[] = array("name"=>"Romanian verbs","id"=>3);
   $topdecks[] = array("name"=>"Software engineering","id"=>4);
-  $topdecks[] = array("name"=>"Music trivia","id"=>5);
+  $topdecks[] = array("name"=>"Music trivia","id"=>5); */
+
+  connectDB();
+
+  $subjects = getSubjects();
+  $topdecks = getTopDecks();
+
+  disconnectDB();
 ?>
+
+<?php pageHead(); ?>
   <div class="container">
     <div id=flipup-logo class="row">
       <div class="col-md-8 col-md-offset-2 pagination-centered">

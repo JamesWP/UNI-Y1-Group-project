@@ -23,7 +23,7 @@
             <ul class="nav navbar-nav">
 
               <li><a href="<?php echo getBaseUrl(); ?>">Subjects</a></li>
-              <li><a href="<?php echo getBaseUrl(); ?>">Results</a></li>
+              <li><a href="<?php echo getBaseUrl(); ?>results.php">Results</a></li>
               <li><a href="<?php echo getBaseUrl(); ?>create-your-own.php">Create your own</a></li>
             </ul>
             <?php if ($_SESSION["loggedin"] != 1):?>
