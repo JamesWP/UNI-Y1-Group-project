@@ -8,7 +8,8 @@ function getQuestions($user, $quizID) {
 	$result_userID = mysqli_query($con, "SELECT u.userID FROM `User` AS u
 										 JOIN `Quiz` AS q on q.userID = u.userID
 										 JOIN `Result` AS r on q.quizID = '$quizID'
-										 WHERE u.name = '$user'");
+										 WHERE u.name = '$user' LIMIT 1");
+	$userID = $result_userID[0];
 
 	var_export($userID);
 
@@ -27,6 +28,6 @@ function getQuestions($user, $quizID) {
 
 connectDB();
 
-getQuestions(1, 15);
+getQuestions('frannybabe', 15);
 
 disconnectDB();
