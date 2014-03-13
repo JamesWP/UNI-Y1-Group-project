@@ -1,3 +1,4 @@
+    </div><!-- end wrap -->    
     <div id="footer">
       <div class="container">
         <small>flipup &copy; 2014</small> 
