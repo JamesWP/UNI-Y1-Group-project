@@ -1,8 +1,9 @@
 <?php
 
 define(SERVER,php_uname('n'));
+define(ISJAIR,strpos(SERVER,'jair')!== false);
 /*** ENVIRONMENT ***/
-if (SERVER=='jair'){
+if (ISJAIR){
   define(BASEURL, "http://localhost/flipupweb/");
 }else{
   define(BASEURL, "http://webdev.cs.manchester.ac.uk/~mbax2ip4/websiteroot/");
@@ -149,8 +150,9 @@ SQL
   }
 
   function pageInit(){
-    if(SERVER!='jair')
+    if(!ISJAIR){
       session_save_path("../database/sessions/");
+    }
 	  session_start();
 	}
 
