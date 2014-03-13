@@ -1,7 +1,6 @@
 <?php include '../application/app.php'; ?>
 <?php pageInit(); ?>
 
-
 <?php
 
   $STATE_NOTHING   =  0;
@@ -43,8 +42,13 @@
     </div>
 <form action ="<?php echo getBaseUrl(); ?>signup-page.php" method = "post" class="col-md-4 form-group" style="align: center; margin-top: 50px;">
 <h2 class="form-signin-heading" style="margin-bottom: 50px;">Sign up for a free account</h2>
+<<<<<<< HEAD
   <?php if($state == $STATE_SUCCESS): ?>
      <div class="alert alert-danger">
+=======
+  <?php if($state == STATE_SUCCESS): ?>
+     <div class="alert alert-success">
+>>>>>>> getquestions 2/3 done
         <a class="alert-link">Account successfully created!</a>
      </div>
   <?php elseif($state == $STATE_NOTMATCH): ?>
