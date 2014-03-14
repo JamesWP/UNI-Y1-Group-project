@@ -1,7 +1,5 @@
 <?php
 
-include '../application/app.php';
-
 function getNextQuestion($quizID) {
   global $con;
   $result = mysqli_query($con, "SELECT deckID FROM `Quiz` WHERE quizID = '$quizID'");
@@ -43,18 +41,22 @@ function saveQuestionResult($quizID, $result, $questionID){
 
 function getResults($quizID){
   global $con;
-  mysqli_multi_query($con," set @row = 0;
-                          SELECT 
-                             concat('Question ',@row:=@row+1) as title
-                            ,q.data as data
-                            ,case when r.correct=1 then 'true' else 'false' end as correct
-                          from Result as r
-                          join Question as q on q.questionID = r.questionID
-                          where r.quizid = $quizID");
+  $sql = " set @row = 0;
+          SELECT 
+             concat('Question ',@row:=@row+1) as title
+            ,q.data as data
+            ,q.questionID
+            ,case when r.correct=1 then 'true' else 'false' end as correct
+          from Result as r
+          join Question as q on q.questionID = r.questionID
+          where r.quizid = $quizID";
+  mysqli_multi_query($con,$sql);
   mysqli_next_result($con);
   $result = mysqli_use_result($con);
   $questions = [];
   while($question = mysqli_fetch_assoc($result)){
+    $question['text'] = json_decode($question['data'])->text;
+    $question['correct'] = $question['correct']=='true';
     $questions[] = $question;
   }
   $result = mysqli_query($con,"select count(1) as correct from Result where quizid = $quizID and correct = 1");
@@ -63,9 +65,3 @@ function getResults($quizID){
 
   return array("questions"=>$questions,"correct"=>$correct);
 }
-/*
-*/
-connectDB();
-
-
-disconnectDB();
