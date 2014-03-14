@@ -30,5 +30,49 @@ body {
 
 }
 .navbar .nav > li > a {
-    color:  #FFF;
+  color:  #FFF;
 }
+
+.flipcard {
+  margin: 0 auto;
+  margin-top: 4%;
+  border-radius: 20px;
+  border: 3px solid;
+  border-color: #fdfd96;
+  background-color: #fefec8;
+  width: 600px;
+  height: 400px;
+}
+
+.q-no {
+  margin-top: 4%;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 20px;
+}
+
+hr {
+  height: 1px;
+  background-color: #575757;
+  margin-top: 3px ;
+}
+
+.q-text {
+  margin-top: 2%;
+  margin-left: 5%;
+  font-size: 25px;
+}
+
+.answers {
+  margin-top: 5%;
+  margin-left: 12.5%;
+  font-size: 20px;
+}
+
+.answers input {
+  margin-bottom: 5%;
+  margin-right: 10%;
+}
+
+
+

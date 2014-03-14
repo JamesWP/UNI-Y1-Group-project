@@ -1,0 +1,28 @@
+FORMAT:
+
+COLOUR
+BACKGROUND -> BORDER
+
+=================================
+
+pastel green
+#dcffd1 -> #90ee90
+
+pastel pink
+#ffd1dc -> #ff85a2
+
+pastel yellow
+#fdfd96 -> #fefec8
+
+pastel blue
+#d4ebf2 -> #86c5da
+
+pastel orange
+#ffd394 -> #ffb347
+
+pastel purple
+#cabbcb -> #9c819f
+
+light gray
+#c6c6c6 -> #adadad
+
