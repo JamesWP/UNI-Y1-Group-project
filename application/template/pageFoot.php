@@ -5,5 +5,8 @@
       </div>
     </div>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <?php foreach($js as $link){ ?>
+      <script src="<?php echo $link; ?>"></script>
+    <?php } ?>
   </body>
 </html>

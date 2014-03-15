@@ -1,0 +1,18 @@
+#questionCreator .answers{
+	display:none;
+}
+#questionCreator input[type="radio"]:checked+.answers{
+	display:block;	
+}
+.another
+{
+	background-color: #2d6ca2;
+	border-color: #2b669a;
+	color:#FFFFFF;
+}
+.remove
+{
+	background-color: #2d6ca2;
+	border-color: #2b669a;
+	color:#FFFFFF;
+}

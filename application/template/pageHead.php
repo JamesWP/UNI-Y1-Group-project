@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <link href="style/main.css" rel='stylesheet' media=screen />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <?php foreach($css as $link){ ?>      
+      <link href="<?php echo $link; ?>" rel='stylesheet' media=screen />
+    <?php } ?>
     <script src="lib/jquery.min.js"></script>
   </head>
   <body>
