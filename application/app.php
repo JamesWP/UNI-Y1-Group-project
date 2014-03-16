@@ -1,5 +1,7 @@
 <?php
 
+include 'get-questions.php';
+
 define(SERVER,php_uname('n'));
 define(ISJAIR,strpos(SERVER,'jair')!== false);
 /*** ENVIRONMENT ***/
