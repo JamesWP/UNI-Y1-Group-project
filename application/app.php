@@ -26,8 +26,6 @@ if (ISJAIR){
 			die("Could not connect to DB.");
 	}
 	// -----------------------------------------------------------------------------------------------------
-	
-
 
 	// ------------------------------------- disconnect from the DB ----------------------------------------
 	function disconnectDB() {
@@ -35,8 +33,6 @@ if (ISJAIR){
 		mysqli_close($con);
 	}
 	// -----------------------------------------------------------------------------------------------------
-
-
 
 	// -------------------------------------------- login --------------------------------------------------
 	function loginCheck($user, $password) {
@@ -71,8 +67,6 @@ if (ISJAIR){
 	} // password_verify
 	// -----------------------------------------------------------------------------------------------------
 
-
-
 	// -------------------------------------------- sign up ------------------------------------------------
 	function available($user) {
 	global $con;
@@ -100,8 +94,6 @@ if (ISJAIR){
 	} // create
 	// -----------------------------------------------------------------------------------------------------
 
-
-
 	// ------------------------------------------ get subjects ---------------------------------------------
 	function getSubjects() {
 		global $con;
@@ -113,7 +105,6 @@ if (ISJAIR){
 		return $subjects;
 	} // getSubjects
 	// -----------------------------------------------------------------------------------------------------
-	
 
 	// ----------------------------------------- get top decks ---------------------------------------------
 	function getTopDecks() {
@@ -162,14 +153,16 @@ SQL
 	 * this should print the page head to screen any parameters should be passed if
 	 * required
 	 */
-	function pageHead(){
+	function pageHead($cssArray = array()){
+    $css = $cssArray;
 	  include 'template/pageHead.php';
 	}
 
 	/**
 	 * this should render the page footer
 	 */
-	function pageFoot(){
+	function pageFoot($jsArray = array()){
+    $js = $jsArray();
 	  include 'template/pageFoot.php';
 	}
 

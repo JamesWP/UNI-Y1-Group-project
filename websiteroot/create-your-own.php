@@ -1,71 +1,90 @@
 <?php include '../application/app.php'; ?>
 <?php pageInit(); ?>
-<?php pageHead(); ?>
+
+<?php 
+
+if(isset($_GET['id']))
+{
+  $id = intval($_GET['id']);
+  connectDB();
+  $questionData = str_replace(array("\n", "\r","\t"), '', getQuestion($id)['data']);
+  disconnectDB();
+}
+
+?>
+
+<?php pageHead(array("style/createLayout.css")); ?>
         
-      <div class="container">  
-     	 <div class="page-header">
-          <h3>Create Your Own</h3>
-         </div>
-        <!-- Choose a question type -->
-        <div class="btn-group">
-          <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown">
-            Choose a Question Type <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Multiple choice</a></li>
-            <li><a href="#">True or false</a></li>
-            <li><a href="#">Fill in the blanks</a></li>
-          </ul>
-       </div>
-       </div>
-       
-       <div class="col-md-4 list-group" style="margin-top:50px; margin-left: 21%;"> 
-         <!-- Buttons (bold, italic, image) -->
-         <div id="wysiwyg_cp">
-          <button id="boldButton" type="button" class="btn btn-primary" onClick="iBold()">
-            <span class="glyphicon glyphicon-bold"></span>
-          </button>
-          <button id="italicButton" type="button" class="btn btn-primary" onClick="iItalic()">
-            <span class="glyphicon glyphicon-italic"></span>
-          </button>
-          <button type="button" id="imageButton" class="btn btn-primary" onClick="iImage()">
-            <span class="glyphicon glyphicon-picture"></span>
-          </button>
+<div class="container">  
+ 	<div class="page-header">
+    <h3>Create Your Own</h3>
+  </div>
+  <div class="row form-horizontal">
+    <div class="col-md-6"> 
+      <h4>Question</h4> 
+      <textarea class="form-control questionText" rows="3" placeholder="Enter question here"></textarea>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <h4>Answers</h4>
+        <select class="questionTypeSelect form-control" id="selQ">
+          <option value="">Choose a quesetion type</option>              
+          <option value="multiplechoice">Multiple choice</option>
+          <option value="blanks">Fill in the blank</option>
+          <option value="truefalse">Truth or false</option>
+        </select>
+      </div>
+      <div class="questionType" data-questionType="multiplechoice">
+        <div class="row form-group answer">
+          <div class="col-md-8">
+            <input type="text" class="form-control" />
           </div>
-         <!-- Text area-->
-          <textarea style="display:none;" id="textArea" class="form-control"></textarea>
-          <iframe name"richTextField" id="richTextField" style="margin:10px 0px 0px -14px; width:500px; height:250px;" placeholder="Enter question..."></iframe>
-       </div>
-       
-       <div class="col-md-4 list-group" style="margin-top: 45px; margin-left: 150px;">
-         <h4 style="margin-bottom: 20px;">Type your answers</h4>
-         <form class="form-inline" role="form">
-           <div class="form-group">
-             <label class="sr-only" for="answer">Answers</label>
-             <input type="text" class="form-control" placeholder="Answer">
-           </div>
-           <div class="radio">
-             <label> <input type="radio" name="answers" id="answer1" value="option1" checked>Correct</label>
-           </div>
-           <br><br><br>
-           <div class="form-group">
-             <label class="sr-only" for="answer">Answers</label>
-             <input type="text" class="form-control" placeholder="Answer">
-           </div>
-           <div class="radio">
-             <label> <input type="radio" name="answers" id="answer2" value="option2" checked>Correct</label>
-           </div>
-           <br><br><br>
-           <div class="form-group">
-             <label class="sr-only" for="answer">Answers</label>
-             <input type="text" class="form-control" placeholder="Answer">
-           </div>
-           <div class="radio">
-             <label> <input type="radio" name="answers" id="answer3" value="option3" checked>Correct</label>
-           </div>
-         </form>
-         <button type="button" class="btn btn-primary btn-lg" type="submit" style="margin-top:30px;">Submit</button>
-       </div> 
-     </div> <!--/wrap -->
-    
-<?php pageFoot(); ?>
+          <div class="col-md-4">
+            <select name="correct" class="form-control">
+              <option value="">---</option>
+              <option value="true">Correct</option>
+              <option value="false">Incorrect</option>
+            </select>
+          </div>
+        </div>
+        <div class="btn-group form-group">
+          <button type="button" class="btn add-answer btn-success btn-sm">Add <span class="glyphicon glyphicon-plus" ></span></button>
+          <button type="button" class="btn rem-answer btn-warning btn-sm">Remove <span class="glyphicon glyphicon-minus" ></span></button>
+        </div>
+      </div>
+      <div class="questionType" data-questionType="blanks">
+        <div class="row form-group">
+          <label data-toggle="tooltip" class="ttooltip" data-placement="bottom" title="How many changes from the correct answer is accepted">Closeness</label>
+          <input type="text" class="form-control editDistance" />
+        </div>
+        <div class="row form-group answer">
+          <div class="col-md-8">
+            <input type="text" class="form-control" />
+          </div>
+          <div class="col-md-4">
+            <select name="correct" class="form-control">
+              <option value="">---</option>
+              <option value="true">Correct</option>
+              <option value="false">Incorrect</option>
+            </select>
+          </div>
+        </div>
+        <div class="btn-group form-group">
+          <button type="button" class="btn add-answer btn-success btn-sm">Add <span class="glyphicon glyphicon-plus" ></span></button>
+          <button type="button" class="btn rem-answer btn-warning btn-sm">Remove <span class="glyphicon glyphicon-minus" ></span></button>
+        </div>
+      </div>
+      <div class="questionType" data-questionType="truefalse">
+        <div class="row form-group">
+          <label>Correct answer</label>
+          <select name="correct" class="questionAnswer form-control">
+            <option value="">---</option>
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php pageFoot(array('lib/module-create.js')); ?>
