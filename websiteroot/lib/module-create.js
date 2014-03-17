@@ -1,11 +1,8 @@
 
-  $(function(){
+  var init = function(){
     $('.ttooltip').tooltip();
     $('.questionTypeSelect').change();
-    <?php if(isset($questionData)): ?>
-      loadJson(JSON.parse('<?php echo $questionData;?>'));
-    <?php endif; ?>
-  });
+  }
   /* setup for events */    
   $('.add-answer').click(function(){
     $this = $(this);
@@ -24,6 +21,35 @@
     $selected.show();
     $others.hide();
   });
+  $('.save-btn').click(function(){
+    try{
+      json = JSON.stringify(getJson());
+      questionID = $('.questionID').val()
+      var req = $.ajax({
+        type:'POST',
+        url: window.location.href,
+        data: {'save':true,'questionID':questionID,'json':json},
+        dataType: 'json'
+      });
+      //window.location.href,{'save':true,'questionID':questionID,'json':json},"json");
+      req.done(function(data){
+        if(data.success){
+          $('.save-error').hide();
+          $('.save-success').removeClass("hidden").show();
+        }else{
+          showError("could not save: " + data.message);
+        }
+      });
+      req.fail(function(err) {console.log(err)});
+    }catch(e){
+      showError(e);
+    }
+  });
+
+  var showError = function(e){
+      $('.save-error .detail').text("" + e);
+      $('.save-error').removeClass("hidden").show();
+  }
 
   var getJson = function(){
     var obj = {};
@@ -60,6 +86,10 @@
           correct:correct
         };
       }).get();
+      if(obj.answers.length<1)
+        throw new Error("you must have at least one answer")
+      if(obj.text.length<1)
+        throw new Error("you must enter a question")
     }
     return obj;
   }
@@ -87,3 +117,5 @@
       $answers.remove();
     }
   }
+
+  init();

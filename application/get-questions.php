@@ -46,6 +46,14 @@ function getQuestion($id){
   return $question;
 }
 
+function createQuestion($userID,$deckID,$data){
+
+}
+
+function updateQuestion($id,$data){
+
+}
+
 function getResults($quizID){
   global $con;
   $sql = " set @row = 0;
@@ -72,3 +80,36 @@ function getResults($quizID){
 
   return array("questions"=>$questions,"correct"=>$correct);
 }
+
+function addQuestionRating($questionID,$quizID,$rating){
+  $ratingAverage = 5;
+  global $con;
+  // if question is in the given quiz
+  if (mysqli_num_rows(mysqli_query($con,"select 1 from Result where questionID = $questionID and quizID = $quizID limit 1"))==1){
+    // add the rating to the rating table
+    mysqli_query($con,"insert into Rating (questionID,rating) values($questionID,$rating)");
+    
+
+    mysqli_multi_query($con,<<<SQL
+      UPDATE Question q
+      LEFT JOIN (
+        SELECT questionID,avg(rating) AS rating
+        FROM Rating 
+        GROUP BY questionID
+        HAVING count(rating)>=$ratingAverage
+      ) r 
+      ON r.questionID = q.questionID
+      SET difficulty = r.rating;
+      DELETE FROM Rating where questionID in (
+        SELECT questionID FROM (
+          SELECT questionID
+          FROM Rating
+          GROUP BY questionID
+          HAVING count(rating)>=$ratingAverage
+        ) as tmp
+      )
+SQL
+    );
+  }
+}
+
