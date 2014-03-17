@@ -162,7 +162,7 @@ SQL
 	 * this should render the page footer
 	 */
 	function pageFoot($jsArray = array()){
-    $js = $jsArray();
+    $js = $jsArray;
 	  include 'template/pageFoot.php';
 	}
 
