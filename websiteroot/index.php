@@ -2,8 +2,13 @@
 <?php pageInit(); ?>
 
 <?php
-
   connectDB();
+  
+  if(isset($_POST['user'])&&isset($_POST['password'])){
+	  $user = mysqli_real_escape_string($con, strtolower($_POST['user']));
+	  $password = mysqli_real_escape_string($con, $_POST['password']);
+	  doLogin($user, $password);
+  }
 
   $subjects = getSubjects();
   $topdecks = getTopDecks();
@@ -43,7 +48,9 @@
   <script>
     $(function(){
       $('.subject').click(function(){
-        $('.subjectsAfter').load($(this).attr('href') + '#subject'); 
+        $('.subjectsAfter').load($(this).attr('href') + ' #subject .list-group',function(){
+          $('.subjectsAfter').children().removeClass('list-group').removeClass('col-md-6');
+        }); 
         return false;
       });
     });

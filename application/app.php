@@ -35,7 +35,7 @@ if (ISJAIR){
 	// -----------------------------------------------------------------------------------------------------
 
 	// -------------------------------------------- login --------------------------------------------------
-	function loginCheck($user, $password) {
+	function doLogin($user, $password) {
 		global $con;	
 		$userID = mysqli_fetch_array(mysqli_query($con, "SELECT userID FROM `User` WHERE name = '$user'"));
 		$userID = $userID['userID'];
@@ -46,19 +46,16 @@ if (ISJAIR){
 			$hash = $hash['password'];
 
 			if((password_verify($password, $hash))) {
-				session_save_path("sessions/");				
-				session_start();
+				if(!ISJAIR)
+          session_save_path("sessions/");				
 				$_SESSION["loggedin"] = 1;
 				$_SESSION["user"] = $user;
-				header("Location: " . getBaseUrl() . "index.php");
 			}
 			else
-				echo "Wrong password!";
-		}
-
-		else
-			echo "Wrong username!";
-
+		    $_SESSION['loginerror'] = 'Your username / password is incorrect.'; 
+    }else{
+	  	$_SESSION['loginerror'] = 'Your username / password is incorrect.'; 
+    }
 	} // loginCheck
 
 	// stub function for php < 5.5
