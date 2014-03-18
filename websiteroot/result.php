@@ -1,5 +1,4 @@
 <?php include '../application/app.php'; ?>
-<?php include '../database/connect.php'; ?>
 <?php pageInit(); ?>
 
 <?php /* TODO need to gather data from database */
