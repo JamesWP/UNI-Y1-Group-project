@@ -68,7 +68,7 @@ function getResults($quizID){
   mysqli_multi_query($con,$sql);
   mysqli_next_result($con);
   $result = mysqli_use_result($con);
-  $questions = [];
+  $questions = array();
   while($question = mysqli_fetch_assoc($result)){
     $question['text'] = json_decode($question['data'])->text;
     $question['correct'] = $question['correct']=='true';
