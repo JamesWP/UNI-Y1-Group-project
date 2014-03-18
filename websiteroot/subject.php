@@ -14,7 +14,7 @@
     <div class="row">
       <h3>Subject: <?php echo $subjectInfo['name']; ?></h3>
     </div>
-    <div class="row">
+    <div class="row" id="subject">
       <div class="col-md-6 list-group">
         <a href="#" class="list-group-item active">Decks</a>
         <?php foreach($decks as $deck){?>

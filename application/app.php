@@ -97,7 +97,7 @@ if (ISJAIR){
 	// ------------------------------------------ get subjects ---------------------------------------------
 	function getSubjects() {
 		global $con;
-		$result = mysqli_query($con, "SELECT name, subjectID as id from `Subject` ORDER BY name LIMIT 5");
+		$result = mysqli_query($con, "SELECT name, subjectID as id from `Subject` ORDER BY name");
 		while($subject = mysqli_fetch_array($result)) {
 			$subjects[] = $subject;
 		}
@@ -109,8 +109,15 @@ if (ISJAIR){
 	// ----------------------------------------- get top decks ---------------------------------------------
 	function getTopDecks() {
 		global $con;
-		$result = mysqli_query($con, "SELECT name, deckID as id from `Deck` ORDER BY rating, name LIMIT 5");
-		while($deck = mysqli_fetch_array($result)) {
+		$result = mysqli_query($con, <<<SQL
+SELECT name, d.deckID as id 
+FROM `Deck` d
+LEFT JOIN Quiz q on q.deckID = d.deckID
+GROUP BY d.deckID,d.name,d.rating
+ORDER BY d.rating+count(q.quizID)/2 desc, d.name
+SQL
+);
+    while($deck = mysqli_fetch_array($result)) {
 			$decks[] = $deck;
 		}
 		return $decks;

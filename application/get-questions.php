@@ -113,3 +113,12 @@ SQL
   }
 }
 
+function getNewDecks(){
+  global $con;
+  $result = mysqli_query($con,"select d.deckID,d.name from Deck d order by createdOn desc limit 10");
+  while(($row = mysqli_fetch_assoc($result)))
+    $rows[] = $row;
+  return $rows;
+}
+
+
