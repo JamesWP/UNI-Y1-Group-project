@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <link href="style/main.css" rel='stylesheet' media=screen />
+
   <style>
     #f1_container {
       position: relative;
@@ -119,27 +120,38 @@
 <label class="f1_card" for="button">
   <div class="front face">
     <div class="jumbotron text-center">
-      <p> The ghosts in pacman are called Inky, Blinky, Pinky and ____?</p>
-        <div class="input-group">
-         <input type ="text" class="form-control">
-        </div>
-      <br>
-      <label class="f1_card" for="button">
+      <p> Which long-running game serious was spawned by a company's last attempt at making a game before closing?</p>
       <p>
-        <a href="#" class="btn btn-primary btn-lg" role="button">Submit Answer</a>
+        <div class="btn-group-vertical" data-toggle="buttons">
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="answer1"> Mega Man
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="answer2"> Dragon Quest
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="answer3"> Persona
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="answer4"> Final Fantasy
+          </label>
+        </div> 
       </p>
+      <label class="f1_card" for="button">
+        <p>
+          <a href="#" class="btn btn-primary btn-lg" role="button">Submit Answer</a>
+        </p>
       </label>
     </div>
   </div>
   <div class="back face center">
     <div class="jumbotron text-center">
-      <h2> You were (In)Correct!</h2>
-      <p>The answer is Clyde! You answered Clyde!</p> 
+      <h2> You were (In)Correct!</h1>
+      <p>The answer is Final Fantasy! You answered Final Fantasy!</p> 
       <p><a href="#" class="btn btn-primary btn-lg" role="button">Next Question </a></p> 
     </div>
   </div>
 </label>
-
 </div>
 </div>
         <!--Not adding any more code outside of this! -->
