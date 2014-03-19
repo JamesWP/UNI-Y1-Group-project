@@ -7,7 +7,7 @@ if(isset($_GET['id']))
 {
   $id = intval($_GET['id']);
   connectDB();
-  $questionData = str_replace(array("\n", "\r","\t"), '', getQuestion($id)['data']);
+  $questionData = str_replace(array("\n", "\r","\t"), '', getQuestion($id));
   $editing = true;
   disconnectDB();
 }elseif(isset($_POST['save'])){

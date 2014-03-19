@@ -41,7 +41,7 @@ function saveQuestionResult($quizID, $result, $questionID){
 
 function getQuestion($id){
   global $con;
-  $result = mysqli_query($con,"SELECT data FROM Question WHERE questionID = '$id");
+  $result = mysqli_query($con,"SELECT data FROM Question WHERE questionID = '$id'");
   $temp = mysqli_fetch_assoc($result);
   $question = $temp['data'];
   return $question;
