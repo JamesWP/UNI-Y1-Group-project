@@ -2,35 +2,38 @@
 <?php pageInit(true); ?>
 
 <?php 
-
 if(!isset($_GET['deckID'])){
   die('you must provide a deckID');
 }
 
-if(isset($_GET['id']))
-{
-  $id = intval($_GET['id']);
+if(isset($_POST['save'])){
+  $data = $_POST['json'];
+  if(isset($_REQUEST['id']))
+    $id = intval($_REQUEST['id']);
+  else
+    $id = -1;
   connectDB();
-  $questionData = str_replace(array("\n", "\r","\t"), '', getQuestion($id));
-  $editing = true;
-  disconnectDB();
-}elseif(isset($_POST['save'])){
-  $data = $_POST['data'];
-  $id = intval($_POST['id']);
-  //TODO check the question belongs to the user
+
   if($id == -1){
-    //TODO insert new question
-    $saved = createQuestion($data);
+    $userID = $_SESSION['user'];
+    $deckID = $_GET['deckID'];
+    $saved = createQuestion($userID,$deckID,$data);
   }else{
-    //TODO update question
     $saved = updateQuestion($id,$data);
   }
+  disconnectDB();
   if($saved){
     echo '{"success":true}';
   }else{
     echo '{"success":false,"message":"there was an issue saving the data"}';
   }
   die();
+}elseif(isset($_GET['id'])){
+  $id = intval($_GET['id']);
+  connectDB();
+  $questionData = str_replace(array("\n", "\r","\t"), '', getQuestion($id));
+  $editing = true;
+  disconnectDB();
 }
 
 ?>

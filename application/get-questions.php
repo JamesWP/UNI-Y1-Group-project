@@ -49,14 +49,18 @@ function getQuestion($id){
 
 function createQuestion($userID, $deckID,  $data, $difficulty = 3){
   global $con;
-  mysqli_query($con, "INSERT INTO `Question` (deckID, userID, data, difficulty)
-                      VALUES ('$deckID', '$userID', '$data', '$difficulty')");
+  $result = mysqli_query($con, "INSERT INTO `Question` (deckID, userID, data, difficulty)
+                      VALUES('$deckID', '$userID', '$data', '$difficulty')");
+  print_r(mysqli_error($con));
+  die();
+  return $result != false;
 }
 
 function updateQuestion($questionID, $data){
   global $con;
-  mysqli_query($con, "UPDATE `Question` SET data = '$data'
+  $result = mysqli_query($con, "UPDATE `Question` SET data = '$data'
                       WHERE questionID = '$questionID'");
+  return $result != false;
 }
 //function json_decode($obj){
 //return array('text' => 'test');
