@@ -61,9 +61,9 @@ if (ISJAIR){
 	} // loginCheck
 
 	// stub function for php < 5.5
-	function password_verify($password, $hash) {
-		return md5($password) == $hash;
-	} // password_verify
+//	function password_verify($password, $hash) {
+//		return md5($password) == $hash;
+//	} // password_verify
 	// -----------------------------------------------------------------------------------------------------
 
 	// -------------------------------------------- sign up ------------------------------------------------

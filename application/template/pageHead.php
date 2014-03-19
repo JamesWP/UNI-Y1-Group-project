@@ -22,7 +22,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo getBaseUrl(); ?>index.php"> <img class="img-responsive" style="margin-top:-12px;" src="images/flipup_logo.png"/> </a>
+            <a class="navbar-brand" href="<?php echo getBaseUrl(); ?>index.php"> <img class="img-responsive" style="margin-top:-12px;" src="images/smallLogo.gif" height="43" width="150"/> </a>
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
