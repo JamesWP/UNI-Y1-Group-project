@@ -58,9 +58,9 @@ function updateQuestion($questionID, $data){
   mysqli_query($con, "UPDATE `Question` SET data = '$data'
                       WHERE questionID = '$questionID'");
 }
-function json_decode($obj){
-return array('text' => 'test');
-}
+//function json_decode($obj){
+//return array('text' => 'test');
+//}
 
 function getResults($quizID){
   global $con;
