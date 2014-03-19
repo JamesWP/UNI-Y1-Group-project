@@ -107,7 +107,10 @@ function addQuestionRating($questionID,$quizID,$rating){
   $ratingAverage = 5;
   global $con;
   // if question is in the given quiz
-  if (mysqli_num_rows(mysqli_query($con,"select 1 from Result where questionID = $questionID and quizID = $quizID limit 1"))==1){
+  if (mysqli_num_rows(mysqli_query($con,"SELECT 1 FROM Result
+                                         WHERE questionID = $questionID
+                                         AND quizID = $quizID LIMIT 1"))==1)
+  {
     // add the rating to the rating table
     mysqli_query($con,"insert into Rating (questionID,rating) values($questionID,$rating)");
     
