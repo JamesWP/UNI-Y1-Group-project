@@ -3,10 +3,10 @@
 function createQuiz($userID, $deckID) {
   global $con;
   mysqli_query($con, "INSERT INTO `Quiz` (userID, deckID)
-                      VALUES ('$userID', $'deckID')");
-  $result = mysqli_query($con, "SELECT MAX(quizID) FROM `Quiz`
+                      VALUES ('$userID', '$deckID')");
+  $result = mysqli_query($con, "SELECT MAX(quizID) as lastID FROM `Quiz`
                                 WHERE userID = '$userID'");
-  return $result;
+  return $result['lastID'];
 } // createQuiz
 
 function getNextQuestion($quizID) {
