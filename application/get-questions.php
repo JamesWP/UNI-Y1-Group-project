@@ -47,13 +47,16 @@ function getQuestion($id){
   return $question;
 }
 
-function createQuestion($userID,$deckID,$data){
+function createQuestion($userID, $deckID,  $data, $difficulty = 2){
   global $con;
-  
+  mysqli_query($con, "INSERT INTO `Question`(deckID, userID, data, difficulty)
+                      VALUES($deckID, $userID, $data, $difficulty)");
 }
 
-function updateQuestion($id,$data){
-
+function updateQuestion($questionID, $data){
+  global $con;
+  mysqli_query($con, "UPDATE `Question` SET data = '$data'
+                      WHERE questionID = '$questionID'");
 }
 
 function getResults($quizID){
