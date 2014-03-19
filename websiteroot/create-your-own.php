@@ -1,13 +1,5 @@
-<<<<<<< HEAD
 <?php include '../application/app.php'; ?>
 <?php pageInit(true); ?>
-=======
-<?php
-
- include '../application/app.php'; ?>
-
-<?php pageInit(); ?>
->>>>>>> FETCH_HEAD
 
 <?php 
 
