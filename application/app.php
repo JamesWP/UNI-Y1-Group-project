@@ -46,7 +46,7 @@ if (ISJAIR){
 			$hash = $hash['password'];
 
 			if((password_verify($password, $hash))) {
-				if(!ISJAIR)
+				if(!ISJAIR && false)
           session_save_path("sessions/");				
 				$_SESSION["loggedin"] = 1;
 				$_SESSION["userID"] = $userID;

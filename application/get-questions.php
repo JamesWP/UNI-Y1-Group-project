@@ -48,7 +48,8 @@ function getQuestion($id){
 }
 
 function createQuestion($userID,$deckID,$data){
-
+  global $con;
+  
 }
 
 function updateQuestion($id,$data){
