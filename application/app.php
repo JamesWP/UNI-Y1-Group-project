@@ -8,7 +8,7 @@ define(ISJAIR,strpos(SERVER,'jair')!== false);
 if (ISJAIR){
   define(BASEURL, "http://localhost/flipupweb/");
 }else{
-  define(BASEURL, "http://webdev.cs.manchester.ac.uk/~mbax2rf2/websiteroot/");
+  define(BASEURL, "http://localhost/flipup/websiteroot/");
 }
 /*** ENVIRONMENT ***/
 
@@ -17,8 +17,8 @@ if (ISJAIR){
 		global $con;
 		$database_host = "dbhost.cs.man.ac.uk";
 
-		$database_user = "mbax2rf2";
-		$database_pass = "Dern1994";
+		$database_user = "mbax2ip4";
+		$database_pass = "vanillacupcake";
 
 
 		$con = new mysqli($database_host , $database_user, $database_pass, "2013_comp10120_w2");
@@ -149,7 +149,7 @@ SQL
   }
 
   function pageInit($needsLogin = false){
-    if(!ISJAIR){
+    if(!ISJAIR && false){
       session_save_path("../database/sessions/");
     }
 	  session_start();

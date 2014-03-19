@@ -47,7 +47,7 @@ function getQuestion($id){
   return $question;
 }
 
-function createQuestion($userID, $deckID,  $data, $difficulty = 2){
+function createQuestion($userID, $deckID,  $data, $difficulty = 3){
   global $con;
   $result = mysqli_query($con, "INSERT INTO `Question` (deckID, userID, data, difficulty)
                       VALUES('$deckID', '$userID', '$data', '$difficulty')");
@@ -68,7 +68,7 @@ function updateQuestion($questionID, $data){
 
 function getResults($quizID){
   global $con;
-  $sql = " set @row = 0;
+  $sql = "set @row = 0;
           SELECT 
              concat('Question ',@row:=@row+1) as title
             ,q.data as data
