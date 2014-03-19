@@ -61,7 +61,7 @@ function updateQuestion($questionID, $data){
 
 function getResults($quizID){
   global $con;
-  $sql = " set @row = 0;
+  $sql = "set @row = 0;
           SELECT 
              concat('Question ',@row:=@row+1) as title
             ,q.data as data

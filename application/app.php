@@ -147,7 +147,7 @@ SQL
   }
 
   function pageInit($needsLogin = false){
-    if(!ISJAIR){
+    if(!ISJAIR && false){
       session_save_path("../database/sessions/");
     }
 	  session_start();
