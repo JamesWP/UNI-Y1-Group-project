@@ -7,6 +7,7 @@
         <div class="jumbotron"> 
       <div class="row">
         <div class="col-lg-12">
+        <h1>FAQ-Frequently Asked Questions</h1>
         <h2><font color="#428BCA">How can I create my own deck of questions?</font></h2>
         <p>You need to be logged in to create your own page. Then go to (the create your own) button on the top of the page, choose a subject, and you could generate the questions by typing the question, choosing the type of answers, typing the answers depends on the type. You cannot write less than 10 questions per deck.</p>
         <h2><font color="#428BCA">How can I modify my information?</font></h2>
@@ -26,7 +27,7 @@
         <p>It generate randomly from a deck of questions.</p>
         <h2><font color="#428BCA">How can I know what decks are there?</font></h2>
         <p>You could know the top rated decks from the main page, or you could choose a subject, and all the decks in the subject will be listed.</p>
-        <a class="btn btn-primary" href="Help.html" role="button">Go back to Help us Page &raquo;</a></p>
+        <a class="btn btn-primary" href="help.php" role="button">Go back to Help us Page &raquo;</a></p>
        </div>
      </div>
     </div>
