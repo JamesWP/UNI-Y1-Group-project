@@ -6,6 +6,7 @@
         <div class="jumbotron"> 
       <div class="row">
         <div class="col-lg-12">
+        <h2 class="text-center"><font color="#428BCA">Data &amp Privacy</font></h2>
         <p>Members and guests should not find the answers by using other equipment or from another place before they answer the questions.<p>
         <p>All members or guests who are using or visiting this website should be treated fairly.</p>
         <p>None of the information on this website should be offensive to either the users or the developers.</p>
