@@ -1,4 +1,6 @@
-<?php include '../application/app.php'; ?>
+<?php
+  ini_set('display_errors', '1'); error_reporting(E_ERROR | E_WARNING | E_PARSE);
+  include '../application/app.php'; ?>
 <?php pageInit(); ?>
 
 <?php
@@ -44,7 +46,7 @@
 <h2 class="form-signin-heading" style="margin-bottom: 50px;">Sign up for a free account</h2>
   <?php if($state == $STATE_SUCCESS): ?>
      <div class="alert alert-danger">
-  <?php if($state == STATE_SUCCESS): ?>
+  <?php if($state == $STATE_SUCCESS): ?>
      <div class="alert alert-success">
   <?php if($state == $STATE_SUCCESS): ?>
      <div class="alert alert-success">
@@ -82,7 +84,6 @@
     </div> 
    <input name="submit" value="Sign up" class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 60px; margin-bottom: 50px;" />
 </form>
-<?php // } ?>
 </div>
 
 <?php pageFoot(); ?>
