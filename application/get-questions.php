@@ -41,7 +41,7 @@ function saveQuestionResult($quizID, $result, $questionID){
 
 function getQuestion($id){
   global $con;
-  $result = mysqli_query($con,"SELECT data FROM Question WHERE questionID = '$id");
+  $result = mysqli_query($con,"SELECT data FROM Question WHERE questionID = '$id'");
   $temp = mysqli_fetch_assoc($result);
   $question = $temp['data'];
   return $question;
@@ -58,6 +58,9 @@ function updateQuestion($questionID, $data){
   mysqli_query($con, "UPDATE `Question` SET data = '$data'
                       WHERE questionID = '$questionID'");
 }
+//function json_decode($obj){
+//return array('text' => 'test');
+//}
 
 function getResults($quizID){
   global $con;

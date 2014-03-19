@@ -15,7 +15,7 @@
   <div class="container">
     <div id=flipup-logo class="row">
       <div class="col-md-8 col-md-offset-2 pagination-centered">
-        <img class="img-responsive" src="<?php echo getBaseUrl();?>images/flipup.png"/> 
+        <img class="img-responsive" src="<?php echo getBaseUrl();?>images/website_main2.gif"/> 
       </div>
     </div>
     <div class="row">
