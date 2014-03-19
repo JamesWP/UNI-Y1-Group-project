@@ -49,7 +49,7 @@ if (ISJAIR){
 			$hash = mysqli_fetch_array(mysqli_query($con, "SELECT password FROM `User` WHERE name = '$user'"));
 			$hash = $hash['password'];
 
-			if((password_verify($password, $hash))) {
+			if((checkHash($password, $hash))) {
 				if(!ISJAIR && false)
           session_save_path("sessions/");				
 				$_SESSION["loggedin"] = 1;
@@ -62,10 +62,18 @@ if (ISJAIR){
     }
 	} // loginCheck
 
-	// stub function for php < 5.5
-//	function password_verify($password, $hash) {
-//		return md5($password) == $hash;
-//	} // password_verify
+	
+	function checkHash($password,$hash){
+		$parts = split(' ',$hash);
+		$hash = $parts[0];
+		$salt = $parts[1];
+		return md5($password.$salt) == $hash;
+	}
+
+	function createHash($password){
+		$salt = md5(time());
+		return md5($password.$salt)." ".$salt;
+	}
 	// -----------------------------------------------------------------------------------------------------
 
 	// -------------------------------------------- sign up ------------------------------------------------
@@ -81,17 +89,11 @@ if (ISJAIR){
 
 	function create($user, $password) {
 		global $con;
-		$password =  md5($password);
+		$password =  createHash($password);
 		$create = mysqli_query($con, "INSERT INTO `User` (name, password)
 									  VALUES ('$user', '$password')");
 									  // to be modified later on to accept pictures & description	
-		if ($create == false)
-			die("Account failed to be created.");
-		else {
-			$usercreated = 1;
-			echo $usercreated;
-			header("Location: " . getBaseUrl() . "signup-page.php"); 
-		}
+		return $create != false;
 	} // create
 	// -----------------------------------------------------------------------------------------------------
 
