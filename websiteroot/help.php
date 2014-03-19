@@ -5,7 +5,7 @@
       <div class="container">
         <div class="jumbotron">
           <h1><font color="#428BCA">Help us</font></h1>
-          <p class="lead">This page is going to help user to know more things about this website and how this website works and what you can do in the website.</p>
+          <p class="lead">This page is going to help user to know more things about this website and how this website works and what user can do in the website.</p>
           <div class="row">
             <div class="col-lg-6">
               <h2><font color="#428BCA">What is "Flip Up"</font></h2>
