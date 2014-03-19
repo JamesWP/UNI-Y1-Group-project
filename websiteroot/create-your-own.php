@@ -3,6 +3,10 @@
 
 <?php 
 
+if(!isset($_GET['deckID'])){
+  die('you must provide a deckID');
+}
+
 if(isset($_GET['id']))
 {
   $id = intval($_GET['id']);
