@@ -47,10 +47,10 @@ function getQuestion($id){
   return $question;
 }
 
-function createQuestion($userID, $deckID,  $data, $difficulty = 2){
+function createQuestion($userID, $deckID,  $data, $difficulty = 3){
   global $con;
-  mysqli_query($con, "INSERT INTO `Question`(deckID, userID, data, difficulty)
-                      VALUES($deckID, $userID, $data, $difficulty)");
+  mysqli_query($con, "INSERT INTO `Question` (deckID, userID, data, difficulty)
+                      VALUES ('$deckID', '$userID', '$data', '$difficulty')");
 }
 
 function updateQuestion($questionID, $data){

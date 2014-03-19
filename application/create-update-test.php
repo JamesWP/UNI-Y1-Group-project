@@ -11,10 +11,10 @@
   "answer":false,
   "type":"truefalse"
 }';
-  $difficulty = 3;
+  $difficulty = 4;
   $deckID = 2;
 
-  createQuestion($userID, $deckID, $data, $difficulty);
+  createQuestion($userID, $deckID, $json, $difficulty);
 
   disconnectDB();
 ?>
