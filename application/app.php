@@ -16,8 +16,8 @@ if (ISJAIR){
 	function connectDB() {
 		global $con;
 		$database_host = "dbhost.cs.man.ac.uk";
-		$database_user = "mbax2ip4";
-		$database_pass = "vanillacupcake";
+		$database_user = "mbax3jp2";
+		$database_pass = "jamessql";
 
 		$con = new mysqli($database_host , $database_user, $database_pass, "2013_comp10120_w2");
 
@@ -49,12 +49,12 @@ if (ISJAIR){
 				if(!ISJAIR)
           session_save_path("sessions/");				
 				$_SESSION["loggedin"] = 1;
-				$_SESSION["user"] = $user;
+				$_SESSION["userID"] = $userID;
 			}
 			else
-		    $_SESSION['loginerror'] = 'Your username / password is incorrect.'; 
+		    $_SESSION['message'] = 'Your username / password is incorrect.'; 
     }else{
-	  	$_SESSION['loginerror'] = 'Your username / password is incorrect.'; 
+	  	$_SESSION['message'] = 'Your username / password is incorrect.'; 
     }
 	} // loginCheck
 
@@ -146,11 +146,16 @@ SQL
     return mysqli_fetch_array($result);
   }
 
-  function pageInit(){
+  function pageInit($needsLogin = false){
     if(!ISJAIR){
       session_save_path("../database/sessions/");
     }
 	  session_start();
+    if($needsLogin && $_SESSION['loggedin'] != 1){
+      $_SESSION['message'] = "you must be logged in to edit this question";
+      header('location:' . getBaseUrl().'login.php');
+      die();
+    }
 	}
 
 	/**

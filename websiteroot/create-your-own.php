@@ -1,8 +1,5 @@
-<?php
-
- include '../application/app.php'; ?>
-
-<?php pageInit(); ?>
+<?php include '../application/app.php'; ?>
+<?php pageInit(true); ?>
 
 <?php 
 
@@ -10,7 +7,8 @@ if(isset($_GET['id']))
 {
   $id = intval($_GET['id']);
   connectDB();
-  $questionData = str_replace(array("\n", "\r","\t"), '', getQuestion($id));
+  $questionData = str_replace(array("\n", "\r","\t"), '', getQuestion($id)['data']);
+  $editing = true;
   disconnectDB();
 }elseif(isset($_POST['save'])){
   $data = $_POST['data'];
@@ -37,7 +35,11 @@ if(isset($_GET['id']))
         
 <div class="container">  
  	<div class="page-header">
-    <h3>Create Your Own</h3>
+    <?php if(isset($editing)): ?>
+      <h3>Editing question</h3>
+    <?php else:?>
+      <h3>Create New question</h3>
+    <?php endif;?>
   </div>
   <div class="row">
     <p>
