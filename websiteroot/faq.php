@@ -26,9 +26,10 @@
                 <p>It generate randomly from a deck of questions.</p>
                 <h3><font color="#428BCA">How can I know what decks are there?</font></h3>
                 <p>You could know the top rated decks from the main page, or you could choose a subject, and all the decks in the subject will be listed.</p>
-                <a class="btn btn-primary" href="help.php" role="button">Go back to Help us Page &raquo;</a></p>
+                <a class="btn btn-primary" href="about.php" role="button">Go back to Help us Page &raquo;</a></p>
               </div>
             </div>
           </div>
         </div>
-      </div><?php pageFoot(); ?>    
+      </div>
+<?php pageFoot(); ?>    
