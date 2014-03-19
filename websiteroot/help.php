@@ -13,32 +13,19 @@
               <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
             </div>
           <div class="col-lg-6">
-            <h2><font color="#428BCA">FAQ-Frequently Asked Questions</font></h2>
-            <p>How can I create my own deck of questions?</p>
-            <p>How can I modify my information?</p>
-            <p>How can I share my result with my friends if I do not have an account?</p>
-            <p>How can I register to the website?</p>
-            <p>How can I improve my result?</p>
-            <p>Why is it different?</p>
-            <p>What if I forget my password?</p>
-            <p>What if I decided to change the subject in the middle of the quiz?</p>
-            <p>How can I choose a subject?</p>
-            <p>How can a quiz generate?</p>
-            <p>How can I know what decks are there?</p>
-            <p><a class="btn btn-primary" href="detail.php" role="button">View details &raquo;</a></p>
-         </div>
-         <div class="col-lg-6">
-          <h2><font color="#428BCA">Terms and Conditions</font></h2>
-          <p>contents</p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-         </div>
-         <div class="col-lg-6">
-          <h2><font color="#428BCA">Data and Privacy</font></h2>
-          <p>Accessing websites is a good way to keep in touch with the society and acquire some knowledge. People can create anything they want like text, images and other elements and potentially share thousands of opinions around the world, so there are some ethical issues appeared. Whether you realize it or not, they must take responsibility for these.</p>
-          <p>For example, In our website "Flip up", we create a system which lets people take a quiz made up a few of the questions in our database, or simply add their own in order to improve the existing sections. However, in order to avoid any law or ethical issues, so both the user and us, the developers, should have responsibilities:</p>
-          <p><a class="btn btn-primary" href="detail1.php" role="button">View details &raquo;</a></p>
+          <h2><font color="#428BCA">Frequently Asked Questions</font></h2>
+          <p> We have created a (hopefully) helpful page of frequently asked questions.If you're new to Flipup or just need some help on an issue with the site, then look no further.</p>
+          <p><a class="btn btn-primary" href="faq.php" role="button">F.A.Q. &raquo;</a></p>
+       </div>
+        <div class="col-lg-6">
+          <h2><font color="#428BCA">Terms &amp Conditions</font></h2>
+          <p>Terms and Conditions aren't always very exciting, but we have to put them somewhere and some people do like to read them, so if you're really interested follow the link!</p>
+          <p><a class="btn btn-primary" href="termsAndConditions.php" role="button">Terms &amp Conditions &raquo;</a></p>
+        </div>
+        <div class="col-lg-6">
+          <h2><font color="#428BCA">Data &amp Privacy</font></h2>
+          <p> The internet is a great thing, but while you use it, you want to know that you and your data are safe. Don't worry, we will keep any information about you safe, but if you want more details then check the link below.</p>
+          <p><a class="btn btn-primary" href="dataAndPrivacy.php" role="button">Data &amp Privacy &raquo;</a></p>
         </div>
       </div>
-    </div> 
-  </div>
 <?php pageFoot(); ?>      
