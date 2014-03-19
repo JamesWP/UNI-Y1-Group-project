@@ -25,7 +25,7 @@
       <div class="col-md-8 list-group"  style = "text-align:center">
       <h1>Recent Activity</h1><br>
 
-      <p1> User compled a quiz and scored 100%</p1><hr>
+      <p1> User completed a quiz and scored 100%</p1><hr>
       <p1> User created a question for a subject</p1><hr>
       <p1> User's deck is now ranked 3rd in it's subject</p1><hr>
       <p1> AnotherUser commpled User's quiz</p1><hr>

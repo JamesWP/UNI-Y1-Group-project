@@ -1,5 +1,14 @@
 <?php
 
+function createQuiz($userID, $deckID) {
+  global $con;
+  mysqli_query($con, "INSERT INTO `Quiz` (userID, deckID)
+                      VALUES ('$userID', $'deckID')");
+  $result = mysqli_query($con, "SELECT MAX(quizID) FROM `Quiz`
+                                WHERE userID = '$userID'");
+  return $result;
+} // createQuiz
+
 function getNextQuestion($quizID) {
   global $con;
   $result = mysqli_query($con, "SELECT deckID FROM `Quiz` WHERE quizID = '$quizID'");
@@ -9,7 +18,7 @@ function getNextQuestion($quizID) {
   if (mysqli_num_rows($result) != 0) {
     $result = mysqli_query($con, "SELECT 1 FROM `Quiz` WHERE quizID = '$quizID' AND questionsLeft > 0");
     if(mysqli_num_rows($result) == 0) {
-      return "done";
+      return false;
     }else{
       $result = mysqli_query($con, "SELECT q.questionID, q.data, q.difficulty FROM Question as q
                                     WHERE q.deckID = '$deckID' AND q.questionID NOT IN
@@ -24,6 +33,7 @@ function getNextQuestion($quizID) {
     print_r(error_get_last());
   }
 }
+
 function saveQuestionResult($quizID, $result, $questionID){
   global $con;
   $result = mysqli_query($con, "SELECT quizID FROM `Quiz` WHERE quizID = '$quizID'");
@@ -88,7 +98,7 @@ function getResults($quizID){
     $question['correct'] = $question['correct']=='true';
     $questions[] = $question;
   }
-  $result = mysqli_query($con,"select count(1) as correct from Result where quizid = $quizID and correct = 1");
+  $result = mysqli_query($con,"SELECT count(1) AS correct FROM Result WHERE quizid = $quizID AND correct = 1");
   $tmp = mysqli_fetch_assoc($result);
   $correct = $tmp['correct'];
 
@@ -99,7 +109,10 @@ function addQuestionRating($questionID,$quizID,$rating){
   $ratingAverage = 5;
   global $con;
   // if question is in the given quiz
-  if (mysqli_num_rows(mysqli_query($con,"select 1 from Result where questionID = $questionID and quizID = $quizID limit 1"))==1){
+  if (mysqli_num_rows(mysqli_query($con,"SELECT 1 FROM Result
+                                         WHERE questionID = $questionID
+                                         AND quizID = $quizID LIMIT 1"))==1)
+  {
     // add the rating to the rating table
     mysqli_query($con,"insert into Rating (questionID,rating) values($questionID,$rating)");
     
@@ -129,7 +142,7 @@ SQL
 
 function getNewDecks(){
   global $con;
-  $result = mysqli_query($con,"select d.deckID,d.name from Deck d order by createdOn desc limit 10");
+  $result = mysqli_query($con,"SELECT d.deckID,d.name FROM Deck d ORDER BY createdOn DESC LIMIT 10");
   while(($row = mysqli_fetch_assoc($result)))
     $rows[] = $row;
   return $rows;

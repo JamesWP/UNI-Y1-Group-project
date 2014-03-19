@@ -147,7 +147,7 @@ SQL
 
   function getSubjectInfo($subjectID){
     global $con;
-    $result = mysqli_query($con,"select name,subjectID as id from Subject where subjectID = $subjectID");
+    $result = mysqli_query($con,"SELECT name,subjectID AS id FROM Subject WHERE subjectID = $subjectID");
 
     return mysqli_fetch_array($result);
   }
