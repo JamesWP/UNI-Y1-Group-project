@@ -8,7 +8,7 @@ define(ISJAIR,strpos(SERVER,'jair')!== false);
 if (ISJAIR){
   define(BASEURL, "http://localhost/flipupweb/");
 }else{
-  define(BASEURL, "http://webdev.cs.manchester.ac.uk/~mbax2ip4/websiteroot/");
+  define(BASEURL, "http://localhost/flipup/websiteroot/");
 }
 /*** ENVIRONMENT ***/
 
