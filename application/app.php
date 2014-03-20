@@ -2,14 +2,14 @@
 
 include 'get-questions.php';
 
-define(SERVER,php_uname('n'));
-define(ISJAIR,strpos(SERVER,'jair')!== false);
+define('SERVER',php_uname('n'));
+define('ISJAIR',strpos(SERVER,'jair')!== false);
 /*** ENVIRONMENT ***/
 if (ISJAIR){
-  define(BASEURL, "http://localhost/flipupweb/");
+  define('BASEURL', "http://localhost/flipupweb/");
 }else{
 
-  define(BASEURL, "http://localhost/flipup/websiteroot/");
+  define('BASEURL', "http://localhost/flipup/websiteroot/");
 
 }
 /*** ENVIRONMENT ***/
