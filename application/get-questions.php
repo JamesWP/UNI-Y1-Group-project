@@ -184,7 +184,7 @@ function getQuiz($quizID){
 function getOtherUsersScore($quizID){
   global $con;
   $sql = <<<SQL
-SELECT r.quizID,u.name,sum(r.correct)
+SELECT r.quizID,u.name as user,sum(r.correct) as score
 FROM `Result` r
 join Quiz q on q.quizID = r.quizID
 join User u on u.userID = q.userID
