@@ -26,10 +26,10 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+              <li><a href="<?php echo getBaseUrl(); ?>about.php">About</a></li>
               <?php if (isset($_SESSION["loggedin"])) { ?>
               <li><a href="<?php echo getBaseUrl(); ?>deck-creator.php">Create a Deck</a></li>
               <?php } ?>
-              <li><a href="<?php echo getBaseUrl(); ?>about.php">About</a></li>
             </ul>
             <?php if (!isset($_SESSION["loggedin"])):?>
             <ul class="nav navbar-nav navbar-right">
