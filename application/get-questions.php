@@ -175,6 +175,12 @@ SQL
     }
 }
 
+function getQuiz($quizID){
+  global $con;
+  $result = mysqli_query($con,"select sum(1) as correct from Result where quizID = $$quizID");
+  return mysqli_fetch_assoc($result);
+}
+
 function getOtherUsersScore($quizID){
   global $con;
   $sql = <<<SQL

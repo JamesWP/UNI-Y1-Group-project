@@ -1,5 +1,5 @@
 <?php include '../application/app.php'; ?>
-<?php pageInit();
+<?php pageInit(true);
 
   connectDB();
   $subjects = getSubjects();
