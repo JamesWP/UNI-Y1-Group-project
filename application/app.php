@@ -54,6 +54,7 @@ if (ISJAIR){
           session_save_path("sessions/");       
         $_SESSION["loggedin"] = 1;
         $username = mysqli_query($con, "SELECT name FROM `User` WHERE userID = '$userID'");
+        $username = mysqli_fetch_assoc($username);
         $_SESSION["user"] = $username["name"];
 			}
 			else
