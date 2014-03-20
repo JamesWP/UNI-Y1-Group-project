@@ -48,7 +48,7 @@ function saveQuestionResult($quizID, $correct, $questionID)
     $question = mysqli_query($con, "SELECT 1 FROM `Question` WHERE questionID = '$questionID'");
 
     if (mysqli_num_rows($result) == 1
-        && ($result == 0 || $result == 1)
+        && ($correct == 0 || $correct == 1)
         && mysqli_num_rows($question) == 1
     ) {
         mysqli_query($con, "INSERT INTO Result (quizID, correct, questionID)
