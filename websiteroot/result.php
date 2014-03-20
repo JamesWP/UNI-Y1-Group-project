@@ -2,13 +2,13 @@
 <?php pageInit(); ?>
 
 <?php /* TODO need to gather data from database */
-  $score = 5;
   connectDB();
   $data = getResults($_SESSION['quizID']);
   $questions = $data['questions'];
   $correct = $data['correct'];
   $otherResults = getOtherUsersScore($_SESSION['quizID']);
   $relatedQuizes = getOtherQuizes($_SESSION['quizID']);
+  $score = getScore($_SESSION['quizID']);
   
   disconnectDB();
 ?>
@@ -19,7 +19,7 @@
 <div class="row well well-lg">
 <div class="col-md-6 col-md-offset-3" style="text-align:center">
 <h1> Congratz <h1>
-<p1>You score <?php echo $score;?> on this quiz<p1>
+<p1>You scored <?php echo $score; ?> on this quiz<p1>
 </div>
 
 </div>
