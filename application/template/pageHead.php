@@ -26,10 +26,7 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-
-              <li><a href="<?php echo getBaseUrl(); ?>">Subjects</a></li>
-              <li><a href="<?php echo getBaseUrl(); ?>result.php">Result</a></li>
-              <li><a href="<?php echo getBaseUrl(); ?>create-your-own.php">Create your own</a></li>
+              <li><a href="<?php echo getBaseUrl(); ?>deck-creator.php">Create a Deck</a></li>
               <li><a href="<?php echo getBaseUrl(); ?>about.php">About</a></li>
             </ul>
             <?php if ($_SESSION["loggedin"] != 1):?>

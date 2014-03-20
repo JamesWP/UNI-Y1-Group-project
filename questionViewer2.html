@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+  <head>
+    <script src="lib/jquery.js"></script>
+    <script src="module-question.js" ></script>
+    <script src="lib/handlebars-v1.3.0.js"></script>
+    <script> 
+      var questionsObj = [];
+      $(function(){
+      
+        var questions = [ 
+          {   
+            "text":"Which long-running game serious was spawned by a company's last attempt at making a game before closing?",
+            "answers":[
+              {
+                "text":"Mega Man",
+                "correct":false
+              },
+              {
+                "text":"Dragon Quest",
+                "correct":false
+              },
+              {
+                "text":"Persona",
+                "correct":false
+              },
+              {
+                "text":"Final Fantasy",
+                "correct":true
+              }
+            ],
+            "type":"multiplechoice"
+          },
+          {
+            "text":"Minecraft was created by Jeb.",
+            "answer":false,
+            "type":"truefalse"
+          },
+          {
+            "text":"The theme to Pac-man is called Korobeiniki.",
+            "answer":false,
+            "type":"truefalse"
+          },
+          {
+            "text":"The ghosts in pacman are called Inky, Blinky, Pinky and ____?",
+            "answers":[
+              {
+                "text":"Clyde",
+                "correct":true
+              }
+            ],
+            "type":"blanks",
+            "editdistance":1
+          },
+          {
+            "text":"In Pac-man, each ghost has its own distinct AI.",
+            "answer":true,
+            "type":"truefalse"
+          },
+          {
+            "text":"What was the first Pokemon that Ash Ketchum recieved?",
+            "answers":[
+              {
+                "text":"Pikachu",
+                "correct":true
+              },
+              {
+                "text":"Pidgey",
+                "correct":false
+              },
+              {
+                "text":"Augumon",
+                "correct":false
+              },
+              {
+                "text":"Bulbasaur",
+                "correct":false
+              }
+            ],
+            "type":"multiplechoice"
+          },
+          {
+            "text":"What is the name of the protagonist in The Legend of Zelda?",
+            "answers":[
+              {
+                "text": "Link",
+                "correct":true
+              }
+            ],
+            "type":"blanks",
+            "editdistance":0
+          },
+          {
+            "text":"The R in RPG (gaming acronym) stands for what?",
+            "answers":[
+              {
+                "text":"Role",
+                "correct":true
+              }
+            ],
+            "type":"blanks",
+            "editdistance":0
+          },
+          {
+            "text":"ArenaNet created which MMORPG?",
+            "answers":[
+              {
+                "text":"Star Wars: The Old Republic",
+                "correct":false
+              },
+              {
+                "text":"Runescape",
+                "correct":false
+              },
+              {
+                "text":"Guild Wars 2",
+                "correct":true
+              },
+              {
+                "text":"World of Warcraft",
+                "correct":false
+              }
+            ],
+            "type":"multiplechoice"
+          },
+          {
+            "text":"Enix Corporation merged with which rival company in 2003?",
+            "answers":[
+              {
+                "text":"Square Soft",
+                "correct":true
+              },
+              {
+                "text":"Nintendo",
+                "correct":false
+              },
+              {
+                "text":"Bethesda Softworks",
+                "correct":false
+              },
+              {
+                "text":"Kairosoft",
+                "correct":false
+              },
+            ],
+            "type":"multiplechoice"
+          }];
+         
+        var questiontemplate = new QuestionTemplateManager('question-template');
+        $.each(questions,function(){
+          var question = questiontemplate.loadModel(this);
+          questionsObj.push(question);
+          $("body").append(question.getQuestionEl());
+        });
+      });
+
+    </script>
+    <script id="question-template" type="text/x-handlebars-template" >
+      <div class="question question-type-{{type}}">
+        <p>{{text}}</p>
+      </div>
+    </script>
+    <style>
+      .question{
+        padding:10px;
+        margin:5px 0;
+        background:blue;
+      }
+      .answers{
+        padding:10px;
+        background:red;
+      }
+      .answer{
+        padding:0 10px;
+        margin:5px 0;
+        background:yellow;
+      }
+      .answer.selected{
+        border-left:5px solid black;
+      }
+      .answer:hover{
+        border-left:2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+  </body>
+</html>
