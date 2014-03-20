@@ -8,12 +8,7 @@
   $correct = $data['correct'];
   $otherResults = getOtherUsersScore($_SESSION['quizID']);
   $relatedQuizes = getOtherQuizes($_SESSION['quizID']);
-<<<<<<< HEAD
   $score = getScore($_SESSION['quizID']);
-  
-=======
-
->>>>>>> add the rating buttons and a function to change color
   disconnectDB();
 ?>
 
