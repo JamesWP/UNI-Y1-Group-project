@@ -65,7 +65,10 @@ if (ISJAIR){
     }
 	} // loginCheck
 
-	
+  function isLoggedIn(){
+    return isset($_SESSION['userID']);
+  }
+
 	function checkHash($password,$hash){
 		$parts = split(' ',$hash);
 		$hash = $parts[0];
