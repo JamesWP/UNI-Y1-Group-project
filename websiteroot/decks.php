@@ -17,10 +17,6 @@ disconnectDB();
     <div class="page-header">
       <h1>The list of decks for <?php echo $subjectInfo["name"]; ?></h1>
     </div>
-     <div class="row">
-       <div class="col-md-10"></div>
-       <div class="col-md-2"><button type="button" class="btn btn-default">create new question</button></div>
-     </div>
     <div class="row">
       <div class="col-md-6 list-group">
           <a class='list-group-item active'>List of Decks</a>
@@ -29,7 +25,10 @@ disconnectDB();
         <?php } ?>
       </div>
       <div class="col-md-6 list-group">
-          <a class='list-group-item active'> Questions for <?php echo $deckInfo["name"]; ?> </a>
+          <a class='list-group-item active'> Questions for <?php echo $deckInfo["deckName"]; ?> 
+            <button href="<?php echo getBaseUrl()."create-your-own.php?deckID=".$deckID?>" type="button" class="pull-right btn btn-primary btn-sm">create new question</button>
+            <div class="clearfix"></div>
+          </a>
           <?php foreach($questions as $question){?>
             <div href="#" class='list-group-item'>
               <div class="row">
@@ -37,7 +36,7 @@ disconnectDB();
                   <?php echo $question["text"]; ?>
                 </div>
                 <div class="col-xs-3">
-                  <button href="<?php echo getBaseUrl()."create-your-own.php? deckID=". $question['id']; ?>" type="button" class="btn btn-warning btn-sm">edit</button>
+                  <button href="<?php echo getBaseUrl()."create-your-own.php?deckID=".$deckID."&id=".$question['id']; ?>" type="button" class="btn btn-warning btn-sm">edit</button>
                   <button href="#" type="button" class="btn btn-danger btn-sm">delete</button>
                 </div>
               </div>
