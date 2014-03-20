@@ -12,7 +12,7 @@ if (ISJAIR){
 }else if (ISFRAN){
   define('BASEURL', "http://localhost/flipup/websiteroot/");
 }else if (ISPI){
-  define('BASEURL', "http://localhost/flipup/");
+  define('BASEURL', "http://10.2.215.160/flipup/");
 }else {
   define('BASEURL', "http://webdev.cs.manchester.ac.uk/~mbax2rf2/flipup/websiteroot/");
 }
