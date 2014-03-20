@@ -8,7 +8,10 @@ if(!isset($_GET['deckID'])){
 
 if(!isset($_GET['delete'])){
   connectDB();
-  
+  //$_REQUEST['id']) // question id
+  //$_GET['deckID'];
+
+  //header
   disconnectDB();
 }
 
