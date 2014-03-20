@@ -8,7 +8,7 @@
   $questions = $data['questions'];
   $correct = $data['correct'];
   $otherResults = getOtherUsersScore($_SESSION['quizID']);
-  $relatedQuizes = getOtherQuizes($_SESSION['quizID';
+  $relatedQuizes = getOtherQuizes($_SESSION['quizID'];
   
   disconnectDB();
 ?>
