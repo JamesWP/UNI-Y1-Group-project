@@ -29,13 +29,13 @@
       <div class="col-md-4 list-group subjectsAfter">
         <a href="#" class='list-group-item active'>Top Decks</a>
         <?php foreach($topdecks as $deck){ ?>
-          <a href="#" class='list-group-item'><?php echo $deck['name'];?> <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+          <a href="<?php echo getBaseUrl()."quiz.php?deckID=".$deck['id'];?>" class='list-group-item'><?php echo $deck['name'];?> <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
         <?php } ?>
       </div>
       <div class="col-md-4 list-group">
         <a href="#" class='list-group-item active'>New Decks</a>
         <?php foreach($newdecks as $deck){ ?>
-          <a href="#" class='list-group-item'><?php echo $deck['name'];?> <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
+          <a href="<?php echo getBaseUrl()."quiz.php?deckID=".$deck['id'];?>" class='list-group-item'><?php echo $deck['name'];?> <span class="pull-right glyphicon glyphicon-circle-arrow-right"></a>
         <?php } ?>
       </div>
     </div>
