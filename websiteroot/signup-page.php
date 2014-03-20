@@ -49,7 +49,7 @@
   <?php if($state == $STATE_SUCCESS): ?>
      <div class="alert alert-success">
 
-        <a class="alert-link">Account successfully created!</a>
+        <a class="alert-link">Account successfully created!<br>You can now sign in using your username and password.</a>
      </div>
   <?php elseif($state == $STATE_NOTMATCH): ?>
      <div class="alert alert-danger">

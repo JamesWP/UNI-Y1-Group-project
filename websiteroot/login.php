@@ -23,9 +23,11 @@ connectDB();
 
 <?php pageHead(); ?>
 
+<div class="container">
+    <div class="col-md-4 list-group">
+    </div>
 
-    <form role="form">
-      <div class="col-md-4 col-md-offset-4">
+    <form role="<?php echo getBaseUrl(); ?>login.php" method = "post" class="col-md-4 form-group" style="align: center; margin-top: 50px;">
       <?php if(isset($loggedout)): ?>
         <div class="alert alert-success">
           <strong>You are now logged out!</strong>
@@ -50,6 +52,7 @@ connectDB();
          <div class="checkbox">
            <label> <input type="checkbox"> Remember me </label>
          </div>
-      </div>
+         <input type="submit" name="submit" value="Sign in" class="btn btn-lg btn-primary btn-block" style="margin-top: 40px">
     </form>
+</div>
 <?php pageFoot(); ?>
