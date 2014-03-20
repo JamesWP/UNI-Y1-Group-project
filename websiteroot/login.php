@@ -22,11 +22,6 @@ connectDB();
 ?>
 
 
-<?php
-    if ($_SESSION['loggedin'] == 1)
-        header("location:index.php");
-?>
-
 <?php pageHead(); ?>
 <div class="container">
     <div class="col-md-4 list-group">
