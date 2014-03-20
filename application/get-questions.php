@@ -195,14 +195,6 @@ order by sum(r.correct) desc,q.startedOn desc
 
 SQL;
 
-function getOtherQuizes($quizID){
-  global $con;
-  $sql = <<<SQL
-SELECT * FROM `Deck` WHERE `subjectID` = (SELECT d.subjectID from Quiz q JOIN Deck d ON d.deckID = q.deckID WHERE q.quizID = $quizID) AND deckID != (SELECT deckID from Quiz Where quizID = $quizID)
-
-SQL;
-
-
   $result = mysqli_query($con,$sql);
   $res = array();
   while($row = mysqli_fetch_assoc($result))
@@ -210,3 +202,16 @@ SQL;
   return $res;
 }
 
+function getOtherQuizes($quizID){
+  global $con;
+  $sql = <<<SQL
+SELECT * FROM `Deck` WHERE `subjectID` = (SELECT d.subjectID from Quiz q JOIN Deck d ON d.deckID = q.deckID WHERE q.quizID = $quizID) AND deckID != (SELECT deckID from Quiz Where quizID = $quizID)
+
+SQL;
+  $result = mysqli_query($con,$sql);
+  $res = array();
+  while($row = mysqli_fetch_assoc($result))
+    $res[] = $row;
+  return $res;
+
+}
