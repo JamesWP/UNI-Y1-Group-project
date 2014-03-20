@@ -8,8 +8,12 @@
   $correct = $data['correct'];
   $otherResults = getOtherUsersScore($_SESSION['quizID']);
   $relatedQuizes = getOtherQuizes($_SESSION['quizID']);
+<<<<<<< HEAD
   $score = getScore($_SESSION['quizID']);
   
+=======
+
+>>>>>>> add the rating buttons and a function to change color
   disconnectDB();
 ?>
 
@@ -36,12 +40,23 @@
           <div class="accordion-group">
             <div class="accordion-heading">
               <a href='#' class='list-group-item'><?php echo $question['title'];?> <span class="pull-right btn btn-<?php echo $question['correct']?"success":"danger"; ?>" ></span></a>
-          	  <div class="panel-collapse collapse">
-            	  <div class="panel-body"><?php echo $question['text']; ?></div>
-          	  </div>
-            </div>
+              <div class="panel-collapse collapse">
+               <div class="panel-body">
+                 <form action="<?php echo addQuestionRating($question['questionID'], $quizID, $rating) ?>">
+                   <div class="pull-right btn-group">
+                     <button id="rate" class="rate btn btn-default btn-sm"><span class="glyphicon glyphicon-star"></span></button>
+                     <button id="rate"  class="rate btn btn-default btn-sm"><span class="glyphicon glyphicon-star"></span></button>
+                     <button id="rate" class="rate btn btn-default btn-sm"><span class="glyphicon glyphicon-star"></span></button>
+                     <button id="rate" class="rate btn btn-default btn-sm"><span class="glyphicon glyphicon-star"></span></button>
+                     <button id="rate" class="rate btn btn-default btn-sm"><span class="glyphicon glyphicon-star"></span></button>
+                   </div>
+                 </form>
+                 <?php echo $question['text']; ?>
+               </div>
+           </div>
           </div>
-        </div>                   
+        </div>
+      </div>
       <?php } ?>
     </div>
     <div class="col-md-6">
@@ -72,6 +87,9 @@
  $('.list-group-item').click(function(){
    $(this).parent().find('.collapse').toggle()
    return false;
+ });
+ $('.btn-default').click(function(){
+     $(this).toggleClass('btn-warning');
  });
 </script>
 <?php pageFoot(); ?>
