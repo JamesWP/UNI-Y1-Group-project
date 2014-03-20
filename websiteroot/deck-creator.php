@@ -9,10 +9,10 @@
   $subjectID = $_REQUEST['id'];
   $deckName = $_REQUEST['deckname'];
 
-  if (isset($subjectName) && (isset($deckName))) {
+  if (isset($subjectID) && (isset($deckName))) {
       $userID = $_SESSION['userID'];
-      mysqli_query($con, "INSERT INTO `Deck` (subjectID, name, userID)
-                          VALUES ('$subjectID', '$subjectName', '$userID')");
+      $sql = "insert into Deck (subjectID,name,userID) values ($subjectID,'$deckName',$userID)";
+      mysqli_query($con, $sql);
     }
     else if (isset($subjectName)){  
       $noDeck = 1;
@@ -50,7 +50,7 @@
       <p>
         <div class="input-group">
           <span class="input-group-addon" style="padding-left:36px; font-weight:bold">Subject:</span>
-          <select class="form-control" id="subject" name="subject">
+          <select class="form-control" id="subject" name="id">
             <?php foreach ($subjects as $subject) { ?>
               <option value="<?php echo $subject['id'] ?>"><?php echo $subject["name"] ?></option>
             <?php } ?>
