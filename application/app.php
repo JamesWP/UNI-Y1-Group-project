@@ -44,16 +44,17 @@ if (ISJAIR){
 		$userID = mysqli_fetch_array(mysqli_query($con, "SELECT userID FROM `User` WHERE name = '$user'"));
 		$userID = $userID['userID'];
 
-		if ($userID != null)
-		{
-			$hash = mysqli_fetch_array(mysqli_query($con, "SELECT password FROM `User` WHERE name = '$user'"));
-			$hash = $hash['password'];
+    if ($userID != null)
+    {
+      $hash = mysqli_fetch_array(mysqli_query($con, "SELECT password FROM `User` WHERE name = '$user'"));
+      $hash = $hash['password'];
 
-			if((checkHash($password, $hash))) {
-				if(!ISJAIR && false)
-          session_save_path("sessions/");				
-				$_SESSION["loggedin"] = 1;
-				$_SESSION["userID"] = $userID;
+      if((checkHash($password, $hash))) {
+        if(!ISJAIR && false)
+          session_save_path("sessions/");       
+        $_SESSION["loggedin"] = 1;
+        $username = mysqli_query($con, "SELECT name FROM `User` WHERE userID = '$userID'");
+        $_SESSION["user"] = $username["name"];
 			}
 			else
 		    $_SESSION['message'] = 'Your username / password is incorrect.'; 

@@ -52,7 +52,7 @@
             </ul>
             <?php else: ?> 
             <ul class="nav navbar-nav navbar-right">
-              <li>Welcome, <?php echo $_SESSION["user"];?></li>
+              <li><a href="#">Welcome, <?php echo $_SESSION['user']; ?>!</a></li>
               <li><a href="<?php echo getBaseUrl();?>login.php?logout">Sign out</a></li>
               <li class="divider-vertical"></li>  
             </ul>
