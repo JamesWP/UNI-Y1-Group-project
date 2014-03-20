@@ -11,17 +11,13 @@
   connectDB();
   global $con;
 
-  $subjectName = $_GET['subject'];
-  $deckName = $_GET['deckname'];
+  $subjectID = $_REQUEST['id'];
+  $deckName = $_REQUEST['deckname'];
 
   if (isset($subjectName) && (isset($deckName))) {
-      $subjectID = mysqli_query($con, "SELECT subjectID FROM `Subject` WHERE name = '$subjectName'");
-     // $subjectID = $temp['subjectID'];
       $userID = $_SESSION['userID'];
-      $date = date_create();
-      $timestamp = date_format($date, 'U = Y-m-d H:i:s');
-      mysqli_query($con, "INSERT INTO `Deck` (subjectID, name, userID, createdOn)
-                          VALUES ('$subjectID', '$subjectName', '$userID', '$timestamp')");
+      mysqli_query($con, "INSERT INTO `Deck` (subjectID, name, userID)
+                          VALUES ('$subjectID', '$subjectName', '$userID')");
     }
     else if (isset($subjectName)){  
       $noDeck = 1;
@@ -50,7 +46,7 @@
     <div class="jumbotron col-md-6 col-md-offset-3"> 
       <h1 class="text-center"><font color="#428BCA">Create a Deck</font></h1>
       <p>
-        <form method="get" action="deck-creator.php">
+        <form method="post" action="deck-creator.php">
         <div class="input-group">
           <span class="input-group-addon" style="font-weight:bold">Deck Name:</span>
           <input type="text" class="form-control" placeholder="Deck Name" id="deckname" name="deckname">
@@ -61,7 +57,7 @@
           <span class="input-group-addon" style="padding-left:36px; font-weight:bold">Subject:</span>
           <select class="form-control" id="subject" name="subject">
             <?php foreach ($subjects as $subject) { ?>
-              <option><?php echo $subject["name"] ?></option>
+              <option value="<?php echo $subject['id'] ?>"><?php echo $subject["name"] ?></option>
             <?php } ?>
           </select>
         </div>
