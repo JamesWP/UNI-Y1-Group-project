@@ -191,7 +191,7 @@ SQL
 	 * this should return the non relative link to the subject
 	 */
 	function getLinkForSubject($subjectID){
-	  return BASEURL."subject.php?id=".$subjectID;
+	  return BASEURL."decks.php?subjectID=".$subjectID;
 	}
 
   function getQuizLinkForDeck($deckID){
