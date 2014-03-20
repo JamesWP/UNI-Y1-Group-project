@@ -1,7 +1,6 @@
 <?php include '../application/app.php'; ?>
 <?php pageInit();
 
-
   connectDB();
   $subjects = getSubjects();
   global $con;

@@ -5,11 +5,14 @@ include 'get-questions.php';
 define('SERVER',php_uname('n'));
 define('ISJAIR',strpos(SERVER,'jair')!== false);
 define('ISFRAN', strpos(SERVER, 'ubuntu')!== false);
+define('ISPI', strpos(SERVER, 'raspberrypi')!== false);
 /*** ENVIRONMENT ***/
 if (ISJAIR){
   define('BASEURL', "http://localhost/flipupweb/");
 }else if (ISFRAN){
   define('BASEURL', "http://localhost/flipup/websiteroot/");
+}else if (ISPI){
+  define('BASEURL', "http://localhost/flipup");
 }else {
   define('BASEURL', "http://webdev.cs.manchester.ac.uk/~mbax2rf2/flipup/websiteroot/");
 }
