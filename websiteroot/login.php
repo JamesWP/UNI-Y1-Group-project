@@ -19,7 +19,6 @@ connectDB();
 
   $message = $_SESSION['message'];
   unset($_SESSION['message']);
-  unset($_SESSION['loggedout']);
 ?>
 
 <?php pageHead(); ?>

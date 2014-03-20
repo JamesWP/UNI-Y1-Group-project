@@ -25,7 +25,7 @@ function getNextQuestion($quizID) {
                                     WHERE q.deckID = '$deckID' AND q.questionID NOT IN
                                     (SELECT r.questionID FROM Result as r WHERE r.quizID = '$quizID')
                                     ORDER BY RAND() LIMIT 1");
-      $result2 = mysqli_query($con, "select sum(questionID)+1 as questionNo from Result where quizID = $quizID group by quizID");
+      $result2 = mysqli_query($con, "select count(questionID)+1 as questionNo from Result where quizID = $quizID");
       $question = mysqli_fetch_assoc($result);
       $quiz = mysqli_fetch_assoc($result2);
       return array('questionID'=>$question['questionID'],'json'=>$question['data'],'questionNo'=>$quiz['questionNo']);

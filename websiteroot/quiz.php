@@ -1,5 +1,5 @@
 <?php include '../application/app.php'; ?>
-<?php pageInit(true);
+<?php pageInit();
 
 
 if (!isset($_GET['deckID'])) {
@@ -7,11 +7,12 @@ if (!isset($_GET['deckID'])) {
 }
 
 $deckID = intval($_GET['deckID']);
-$userID = $_SESSION['userID'];
+$userID = isset($_SESSION['userID'])?$_SESSION['userID']:-1;
 
 connectDB();
 if (!isset($_SESSION['quizID'])
-        ||(isset($_SESSION['lastdeckID'])&&$_SESSION['lastdeckID']!=$deckID)) {
+    || (isset($_SESSION['lastdeckID']) && $_SESSION['lastdeckID'] != $deckID)
+) {
     // new quiz needs creating
     $_SESSION['quizID'] = $quizID = createQuiz($userID, $deckID);
     $_SESSION['lastdeckID'] = $deckID;
@@ -29,11 +30,17 @@ if (isset($_POST['action'])) {
         die();
     } else if ($_POST['action'] == 'next') {
         $question = getNextQuestion($quizID);
-        $json = $question['json'];
-        $questionNumber = $question['questionNo'];
-        $questionID = $question['questionID'];
-        $_SESSION['lastQuestion'] = $questionID;
-        echo json_encode(array("success"=>true,"questionNo"=>$questionNumber,"json"=>$json));
+        if (!$question) {
+            // no more quesitons left
+            echo '{"success":"true","finished":true}';
+        } else {
+            // return question to user
+            $json = $question['json'];
+            $questionNumber = $question['questionNo'];
+            $questionID = $question['questionID'];
+            $_SESSION['lastQuestion'] = $questionID;
+            echo json_encode(array("finished" => false, "success" => true, "questionNo" => $questionNumber, "json" => $json));
+        }
         disconnectDB();
         die();
     }
@@ -82,16 +89,20 @@ if is get next question then get next question
 
     function getNextQuestion() {
         $.ajax({
-            'type':'POST',
+            'type': 'POST',
             'url': window.location.href,
             'data': {'action': 'next'},
             'dataType': 'json'
         }).done(function (data) {
-            var questionJson = JSON.parse(data.json);
-            questionJson.questionNo = data.questionNo;
-            question = questionTemplate.loadModel(questionJson);
-            $("#question").empty().append(question.getQuestionEl());
-            applyColor();
+            if (!data.finished) {
+                var questionJson = JSON.parse(data.json);
+                questionJson.questionNo = data.questionNo;
+                question = questionTemplate.loadModel(questionJson);
+                $("#question").empty().append(question.getQuestionEl());
+                applyColor();
+            } else {
+                window.location.href="<?php echo getBaseUrl().'result.php';?>";
+            }
         }).error(function (err) {
             console.log(err.responseText);
         });
@@ -107,7 +118,7 @@ if is get next question then get next question
         } else {
             alert('oops that was wrong :(');
         }
-        $.ajax({'type':'POST','url': window.location.href, data: {'action': 'save', 'correct': question.isCorrect() ? 'true' : 'false'}, dataType: 'json'})
+        $.ajax({'type': 'POST', 'url': window.location.href, data: {'action': 'save', 'correct': question.isCorrect() ? 'true' : 'false'}, dataType: 'json'})
             .done(function () {
                 getNextQuestion();
             }).error(function (err) {
