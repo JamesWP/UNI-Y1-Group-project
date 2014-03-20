@@ -1,12 +1,12 @@
+[
 {
   "text":"There are living beings without cells.",
   "answer":true,
   "type":"truefalse"
-}
+},
 
 {
-  "text":"Which famous scientist introduced the idea of natural 
-selection?",
+  "text":"Which famous scientist introduced the idea of natural selection?",
   "answers": [
     {
       "text":"Charles Darwin",
@@ -26,16 +26,15 @@ selection?",
     }
   ],
   "type":"multiplechoice"
-}
+},
 {
   "text":"The common cold is caused by a virus.",
   "answer":true,
   "type":"truefalse"
 }
-
+,
 {
-  "text":"Animals which eat both plants and other animals are known 
-as_______",
+  "text":"Animals which eat both plants and other animals are known as _______",
   "answers": [
     {
       "text":"Omnivores",
@@ -45,10 +44,9 @@ as_______",
   "type":"blanks",
   "editdistance":2
 }
-
+,
 {
-  "text":"The name of the process used by plants to convert sunlight 
-into food is ______",
+  "text":"The name of the process used by plants to convert sunlight into food is ______",
   "answers": [
     {
       "text":"Photosynthesis",
@@ -58,15 +56,15 @@ into food is ______",
   "type":"blanks",
   "editdistance":2
 }
+,
 {
   "text":"A salamander is a warm blooded animal.",
   "answer":false,
   "type":"truefalse"
 }
-
+,
 {
-  "text":"The area of biology devoted to the study of fungi is known 
-as?",
+  "text":"The area of biology devoted to the study of fungi is known as?",
   "answers": [
     {
       "text":"Mycology",
@@ -87,10 +85,9 @@ as?",
   ],
   "type":"multiplechoice"
 }
-
+,
 {
-  "text":"8-A definite pathway for impulses from receptors to effectors 
-is found in the",
+  "text":"8-A definite pathway for impulses from receptors to effectors is found in the",
   "answers": [
     {
       "text":"earthworm",
@@ -110,7 +107,7 @@ is found in the",
     }
   ],
   "type":"multiplechoice"
-}
+},
 {
   "text":"Locomotive structures found in some protists include",
   "answers": [
@@ -121,21 +118,20 @@ is found in the",
     {
       "text":"muscles",
       "correct":false
-    }
+    },
     {
       "text":"tentacles",
       "correct":false
-    }
+    },
     {
       "text":"contractile vacuoles",
       "correct":false
     }
   ],
   "type":"multiplechoice"
-}
+},
 {
-  "text":"In humans, gas exchange and gas transport occur as a result of 
-the functioning of a system of",
+  "text":"In humans, gas exchange and gas transport occur as a result of the functioning of a system of",
   "answers": [
     {
       "text":"phloem tubes",
@@ -156,3 +152,4 @@ the functioning of a system of",
   ],
   "type":"multiplechoice"
 }
+]

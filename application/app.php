@@ -56,6 +56,7 @@ if (ISJAIR){
         $username = mysqli_query($con, "SELECT name FROM `User` WHERE userID = '$userID'");
         $username = mysqli_fetch_assoc($username);
         $_SESSION["user"] = $username["name"];
+        $_SESSION["userID"] = $userID;
 			}
 			else
 		    $_SESSION['message'] = 'Your username / password is incorrect.'; 

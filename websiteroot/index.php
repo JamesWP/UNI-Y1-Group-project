@@ -4,7 +4,10 @@
 <?php
   connectDB();
   
-
+  $decks = array(
+      array("name"=>"Java","deckID"=>3)
+      ,array("name"=>"Java","deckID"=>3)
+      ,array("name"=>"Java","deckID"=>3));
   $subjects = getSubjects();
   $topdecks = getTopDecks();
   $newdecks = getNewDecks();
@@ -42,12 +45,12 @@
   </div>
   <script>
     $(function(){
-      $('.subject').click(function(){
+      /*$('.subject').click(function(){
         $('.subjectsAfter').load($(this).attr('href') + ' #subject .list-group',function(){
           $('.subjectsAfter').children().removeClass('list-group').removeClass('col-md-6');
         }); 
         return false;
-      });
+      });*/
     });
   </script>
 <?php pageFoot(); ?>

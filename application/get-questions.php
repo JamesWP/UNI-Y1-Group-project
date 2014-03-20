@@ -69,6 +69,28 @@ function getQuestion($id)
     return $question;
 }
 
+
+function getQuestions($deckID){
+  global $con;
+  $result = mysqli_query($con,"select data ,questionID from Question where deckID = $deckID");
+  $questions = array();
+  while($row = mysqli_fetch_assoc($result)){
+    $json = json_decode($row['data']);
+    $row['text'] = $json->text;
+    $questions[] = $row;
+  }
+  return $questions;
+}
+function getDeckInfo($deckID){
+  global $con;
+  $result = mysqli_query($con,"select
+       d.name as deckName, s.name as subjectName
+      from Deck d
+      join Subject s on s.subjectID = d.subjectID
+      where d.deckID = $deckID");
+  return mysqli_fetch_assoc($result);
+}
+
 function createQuestion($userID, $deckID, $data, $difficulty = 3)
 {
     global $con;

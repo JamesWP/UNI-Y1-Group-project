@@ -94,16 +94,40 @@ Question.prototype.getQuestionEl = function (){ return this.$questionEl};
 var QuestionTemplateManager = function(templateID){
   this.questionTemplate = Handlebars.compile($('#'+templateID).html());
 }
-Question.editDistance = function(s,t){
-  if (!s.length) return t.length;
-  if (!t.length) return s.length;
+Question.editDistance = function(a, b){
+    if(a.length == 0) return b.length;
+    if(b.length == 0) return a.length;
 
-  return Math.min(
-    Question.editDistance(s.substr(1), t) + 1,
-    Question.editDistance(t.substr(1), s) + 1,
-    Question.editDistance(s.substr(1), t.substr(1)) + (s[0] !== t[0] ? 1 : 0)
-  );
-}
+    var matrix = [];
+
+    // increment along the first column of each row
+    var i;
+    for(i = 0; i <= b.length; i++){
+        matrix[i] = [i];
+    }
+
+    // increment each column in the first row
+    var j;
+    for(j = 0; j <= a.length; j++){
+        matrix[0][j] = j;
+    }
+
+    // Fill in the rest of the matrix
+    for(i = 1; i <= b.length; i++){
+        for(j = 1; j <= a.length; j++){
+            if(b.charAt(i-1) == a.charAt(j-1)){
+                matrix[i][j] = matrix[i-1][j-1];
+            } else {
+                matrix[i][j] = Math.min(matrix[i-1][j-1] + 1, // substitution
+                    Math.min(matrix[i][j-1] + 1, // insertion
+                        matrix[i-1][j] + 1)); // deletion
+            }
+        }
+    }
+
+    return matrix[b.length][a.length];
+};
+
 QuestionTemplateManager.prototype.loadModel = function(model){
   return new Question($(this.questionTemplate(model)),model);
 }
