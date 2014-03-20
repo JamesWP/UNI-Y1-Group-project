@@ -36,6 +36,9 @@
         if(data.success){
           $('.save-error').hide();
           $('.save-success').removeClass("hidden").show();
+          setTimeout(function(){
+              window.location.href=returnUrl;
+          },2000);
         }else{
           showError("could not save: " + data.message);
         }

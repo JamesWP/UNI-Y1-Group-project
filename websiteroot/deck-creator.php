@@ -12,14 +12,18 @@
       $userID = $_SESSION['userID'];
       $sql = "insert into Deck (subjectID,name,userID) values ($subjectID,'$deckName',$userID)";
       mysqli_query($con, $sql);
+      header("location:decks?subjectID=$subjectID");
+      die();
     }
     else if (isset($subjectName)){  
       $noDeck = 1;
       header("location:deck-creator.php");
+      die();
     }
   else if (isset($deckName)) {
     $noSubject = 1;
     header("location:deck-creator.php");
+    die();
   }
 
   disconnectDB();

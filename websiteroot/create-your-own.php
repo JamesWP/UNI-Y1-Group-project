@@ -4,6 +4,8 @@
 <?php 
 if(!isset($_GET['deckID'])){
   die('you must provide a deckID');
+}else{
+  $deckID = $_GET['deckID'];
 }
 
 if(isset($_POST['save'])){
@@ -15,7 +17,7 @@ if(isset($_POST['save'])){
   connectDB();
 
   if($id == -1){
-    $userID = $_SESSION['user'];
+    $userID = $_SESSION['userID'];
     $deckID = $_GET['deckID'];
     $saved = createQuestion($userID,$deckID,$data);
   }else{
@@ -134,7 +136,9 @@ if(isset($_POST['save'])){
   </div>
 </div>
 <script>
+  var returnUrl = "<?php echo getBaseUrl()."decks.php?deckID=$deckID";?>";
   <?php if(isset($questionData)): ?>
+
   $(function(){
     loadJson(JSON.parse('<?php echo $questionData;?>'));
   });

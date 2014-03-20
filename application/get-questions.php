@@ -215,3 +215,10 @@ SQL;
   return $res;
 
 }
+
+function getSubjectFromDeck($deckID){
+  global $con;
+  $result= mysqli_query($con,"select subjectID from Deck where deckID = $deckID");
+  $subject = mysqli_fetch_assoc($result);
+  return $subject['subjectID'];
+}

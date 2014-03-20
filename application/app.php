@@ -153,9 +153,10 @@ function getNewDecks()
   function getDecks($subjectID){
     global $con;
     $sql =  <<<SQL
-    SELECT d.deckID as id,d.name as name,d.rating as rating,sum(1) as questions
+    SELECT d.deckID as id,d.name as name,d.rating as rating,(
+      select count(1) from Question q where q.deckID = d.deckID
+    ) as questions
     FROM Deck as d
-    left join Question q on q.deckID = d.deckID
     WHERE d.subjectID = $subjectID
     group by d.deckID,d.name,d.rating
 SQL
