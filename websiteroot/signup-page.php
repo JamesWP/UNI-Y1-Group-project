@@ -78,7 +78,10 @@
       <label for="password">Retype Password</label>
       <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Retype Password">
     </div> 
-   <input name="submit" value="Sign up" class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 60px; margin-bottom: 50px;" />
+    <input name="submit" value="Sign up" class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top: 60px; margin-bottom: 50px;" />
+    <div class="col-md-6 col-md-offset-3 btn btn-primary" type="submit"/>
+      <a style ="color:FFFFFF"href="<?php echo getBaseUrl(); ?>login.php">Sign In</a>   
+    </div>
 </form>
 </div>
 

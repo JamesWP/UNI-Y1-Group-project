@@ -25,4 +25,7 @@
               <p> The internet is a great thing, but while you use it, you want to know that you and your data are safe. Don't worry, we will keep any information about you safe, but if you to see our privacy policy then <a href = "privacy-policy.php">click here.</a> </p>
             </div>
           </div>
+        </div>
+      </div>
+
 <?php pageFoot(); ?>      

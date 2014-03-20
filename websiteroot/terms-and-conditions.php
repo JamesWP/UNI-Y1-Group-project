@@ -22,7 +22,7 @@
           </ul>
           <h3>Visitor Provided Material</h3>
           <ul>
-            <li>Any material that a visitor to this Website sends or posts to this Website shall be considered non-proprietary and non confidential. We shall be entitled to copy, disclose, distribute or use for such other purpose as we deem appropriate all material provided to us, with the exception of personal information, the use of which is covered under our Privacy Policy [insert hyperlink here].</li>
+            <li>Any material that a visitor to this Website sends or posts to this Website shall be considered non-proprietary and non confidential. We shall be entitled to copy, disclose, distribute or use for such other purpose as we deem appropriate all material provided to us, with the exception of personal information, the use of which is covered under our <a href="privacy-policy.php">Privacy Policy</a>.</li>
             <li>When using this website you shall not post or send to or from this Website any material:
               <ul>
                 <li>(a) for which you have not obtained all necessary consents; </li>

@@ -9,7 +9,7 @@ if (ISJAIR){
   define('BASEURL', "http://localhost/flipupweb/");
 }else{
 
-  define('BASEURL', "http://localhost/flipup/websiteroot/");
+  define('BASEURL', "http://webdev.cs.manchester.ac.uk/~mbax2rf2/flipup/websiteroot/");
 
 }
 /*** ENVIRONMENT ***/
@@ -65,7 +65,10 @@ if (ISJAIR){
     }
 	} // loginCheck
 
-	
+  function isLoggedIn(){
+    return isset($_SESSION['userID']);
+  }
+
 	function checkHash($password,$hash){
 		$parts = split(' ',$hash);
 		$hash = $parts[0];
@@ -103,7 +106,7 @@ if (ISJAIR){
 	// ------------------------------------------ get subjects ---------------------------------------------
 	function getSubjects() {
 		global $con;
-		$result = mysqli_query($con, "SELECT name, subjectID as id from `Subject` ORDER BY name");
+		$result = mysqli_query($con, "SELECT name, subjectID as id from `Subject` ORDER BY name limit 5");
 		while($subject = mysqli_fetch_array($result)) {
 			$subjects[] = $subject;
 		}
@@ -116,11 +119,12 @@ if (ISJAIR){
 	function getTopDecks() {
 		global $con;
 		$result = mysqli_query($con, <<<SQL
-SELECT name, d.deckID as id 
+SELECT name, d.deckID as id
 FROM `Deck` d
 LEFT JOIN Quiz q on q.deckID = d.deckID
 GROUP BY d.deckID,d.name,d.rating
 ORDER BY d.rating+count(q.quizID)/2 desc, d.name
+limit 5
 SQL
 );
     while($deck = mysqli_fetch_array($result)) {
@@ -130,18 +134,29 @@ SQL
 	} // getDecks
 	// -----------------------------------------------------------------------------------------------------
 
+	// ----------------------------------------- get new decks ---------------------------------------------
+function getNewDecks()
+{
+    global $con;
+    $result = mysqli_query($con, "SELECT d.deckID,d.name FROM Deck d ORDER BY createdOn DESC LIMIT 5");
+    while (($row = mysqli_fetch_assoc($result)))
+        $rows[] = $row;
+    return $rows;
+}
+	// -----------------------------------------------------------------------------------------------------
+
   // -------
   function getDecks($subjectID){
     global $con;
-    $result = mysqli_query($con, <<<SQL
-    SELECT d.deckID as id,d.name as name,u.name as user,d.rating as rating,count(q.quizID) as total
+    $sql =  <<<SQL
+    SELECT d.deckID as id,d.name as name,d.rating as rating,sum(1) as questions
     FROM Deck as d
-    LEFT JOIN User as u on u.userID = d.userID
-    LEFT JOIN Quiz as q on q.deckID = d.deckID
+    join Question q on q.deckID = d.deckID
     WHERE d.subjectID = $subjectID
-    GROUP BY d.deckID,d.name,u.name,d.rating
+    group by d.deckID,d.name,d.rating
 SQL
-);
+;
+    $result = mysqli_query($con,$sql);
 		while($deck = mysqli_fetch_array($result)) {
 			$decks[] = $deck;
 		}
@@ -188,7 +203,7 @@ SQL
 	 * this should return the non relative link to the subject
 	 */
 	function getLinkForSubject($subjectID){
-	  return BASEURL."subject.php?id=".$subjectID;
+	  return BASEURL."decks.php?subjectID=".$subjectID;
 	}
 
   function getQuizLinkForDeck($deckID){

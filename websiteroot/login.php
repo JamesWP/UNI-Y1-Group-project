@@ -7,6 +7,7 @@ connectDB();
     $user = strtolower($_POST['user']);
     $password = $_POST['password'];
     doLogin($user, $password);
+    header("location:index.php");   
   }
   disconnectDB();
 
