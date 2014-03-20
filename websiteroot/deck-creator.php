@@ -1,14 +1,9 @@
 <?php include '../application/app.php'; ?>
-<?php pageInit(); ?>
+<?php pageInit();
 
-<?php
+
   connectDB();
   $subjects = getSubjects();
-  disconnectDB();
-?>
-
-<?php
-  connectDB();
   global $con;
 
   $subjectID = $_REQUEST['id'];

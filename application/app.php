@@ -151,7 +151,7 @@ function getNewDecks()
     $sql =  <<<SQL
     SELECT d.deckID as id,d.name as name,d.rating as rating,sum(1) as questions
     FROM Deck as d
-    join Question q on q.deckID = d.deckID
+    left join Question q on q.deckID = d.deckID
     WHERE d.subjectID = $subjectID
     group by d.deckID,d.name,d.rating
 SQL
