@@ -175,5 +175,23 @@ SQL
     }
 }
 
+function getOtherUsersScore($quizID){
+  global $con;
+  $sql = <<<SQL
+SELECT r.quizID,u.name,sum(r.correct)
+FROM `Result` r
+join Quiz q on q.quizID = r.quizID
+join User u on u.userID = q.userID
+where q.deckID =
+	(select q2.deckID from Quiz q2 where q2.quizID = $quizID)
+group by r.quizID,u.name,q.startedOn
+order by sum(r.correct) desc,q.startedOn desc
 
+SQL;
+  $result = mysqli_query($con,$sql);
+  $res = array();
+  while($row = mysqli_fetch_assoc($result))
+    $res[] = $row;
+  return $res;
+}
 
