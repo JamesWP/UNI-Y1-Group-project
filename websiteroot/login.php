@@ -14,6 +14,7 @@ connectDB();
     session_destroy();
     session_start();
     $loggedout = true;
+    header("location:index.php");
   }
 
   $message = $_SESSION['message'];
@@ -22,6 +23,11 @@ connectDB();
 ?>
 
 <?php pageHead(); ?>
+
+<?php
+    if ($_SESSION['loggedin'] == 1)
+    header("location:index.php");
+?>
 
 <div class="container">
     <div class="col-md-4 list-group">
@@ -42,11 +48,11 @@ connectDB();
          <h4>Sign in</h4>
        </div>
          <div class="form-group">
-           <label for="exampleInputEmail1">Username</label>
-           <input type="email" name='user' class="form-control" id="exampleInputEmail1" placeholder="Username">
+           <label for="username">Username</label>
+           <input type="text" name='user' class="form-control" id="exampleInputUsername" placeholder="Username">
          </div>
          <div class="form-group">
-           <label for="exampleInputPassword1">Password</label>
+           <label for="password">Password</label>
            <input type="password" name='password' class="form-control" id="exampleInputPassword1" placeholder="Password">
          </div>
          <div class="checkbox">
