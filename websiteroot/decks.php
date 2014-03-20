@@ -17,12 +17,17 @@
   }
   disconnectDB();
 ?>
+  <style>
+    .top-page{
+      margin-bottom: 195px;
+    }
+  </style>
   <div class="container">
-    <div class="page-header">
+    <div class="page-header top-page">
       <h1>The list of decks for <?php echo $subjectInfo["name"]; ?></h1>
     </div>
     <div class="row">
-      <div class="col-md-6 list-group">
+      <div class="col-md-4 col-md-offset-4 list-group">
           <a class='list-group-item active'>List of Decks</a>
           <?php foreach($decks as $deck){?>
             <a href="<?php echo getBaseUrl()."decks.php?subjectID=".$subjectID."&deckID=".$deck['id'];?>" class="list-group-item"><?php echo $deck["name"]; ?>
@@ -30,7 +35,7 @@
             </a>
         <?php } ?>
       </div>
-      <div class="col-md-6 list-group">
+      <div class="col-md-4 list-group">
         <?php if(isset($_GET['deckID'])):?>
           <a class='list-group-item active'> Questions for <?php echo $deckInfo["deckName"]; ?>
             <?php if($isLoggedIn):?>
