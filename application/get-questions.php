@@ -20,12 +20,14 @@ function getNextQuestion($quizID) {
     if(mysqli_num_rows($result) == 0) {
       return false;
     }else{
-      $result = mysqli_query($con, "SELECT q.questionID, q.data, q.difficulty FROM `Question` as q 
-                                    JOIN `Result` as r on r.questionID = q.questionID
+      $result = mysqli_query($con, "SELECT q.questionID, q.data, q.difficulty FROM Question as q
                                     WHERE q.deckID = '$deckID' AND q.questionID NOT IN
-                                    (SELECT r.questionID FROM `Result` as r WHERE r.quizID = '$quizID')
+                                    (SELECT r.questionID FROM Result as r WHERE r.quizID = '$quizID')
                                     ORDER BY RAND() LIMIT 1");
-      return mysqli_fetch_assoc($result);
+      $result2 = mysqli_query($con, "select sum(1)+1 as questionNo from Result where quizID = $quizID");
+      $question = mysqli_fetch_assoc($result);
+      $quiz = mysqli_fetch_assoc($result2);
+      return array('questionID'=>$question['questionID'],'json'=>$question['json'],'questionNo'=>$quiz['questionNo']);
     }
   }else{
     print_r(error_get_last());

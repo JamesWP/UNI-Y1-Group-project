@@ -1,3 +1,3 @@
 <?php
-  echo "UNI KILLS DONT FUCKING GO TO UNI";
+  phpinfo();
 ?>
