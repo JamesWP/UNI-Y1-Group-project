@@ -6,6 +6,15 @@ if(!isset($_GET['deckID'])){
   die('you must provide a deckID');
 }
 
+if(!isset($_GET['delete'])){
+  connectDB();
+  //$_REQUEST['id']) // question id
+  //$_GET['deckID'];
+
+  //header
+  disconnectDB();
+}
+
 if(isset($_POST['save'])){
   $data = $_POST['json'];
   if(isset($_REQUEST['id']))

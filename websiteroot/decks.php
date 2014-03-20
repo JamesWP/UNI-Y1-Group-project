@@ -65,7 +65,7 @@
               <?php if($isLoggedIn):?>
                 <div class="pull-right">
                   <button href="<?php echo getBaseUrl()."create-your-own.php?deckID=".$deckID."&id=".$question["questionID"]; ?>" type="button" class="btn btn-warning btn-sm">edit</button>
-                  <button href="#" type="button" class="btn btn-danger btn-sm">delete</button>
+                  <form action="<?php echo getBaseUrl()."create-your-own.php?deckID=".$deckID."&id=".$question["questionID"]."&delete"; ?>"><button type="button" class="btn btn-danger btn-sm">delete</button></form>
                 </div>
               <?php endif;?>
               <?php echo $question["text"]; ?>
