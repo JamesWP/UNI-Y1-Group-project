@@ -4,10 +4,7 @@
 <?php
   connectDB();
   
-  $decks = array(
-      array("name"=>"Java","deckID"=>3)
-      ,array("name"=>"Java","deckID"=>3)
-      ,array("name"=>"Java","deckID"=>3));
+ 
   $subjects = getSubjects();
   $topdecks = getTopDecks();
   $newdecks = getNewDecks();

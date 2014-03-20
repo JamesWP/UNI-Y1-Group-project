@@ -9,7 +9,7 @@ if (ISJAIR){
   define('BASEURL', "http://localhost/flipupweb/");
 }else{
 
-  define('BASEURL', "http://localhost/flipup/websiteroot/");
+  define('BASEURL', "http://webdev.cs.manchester.ac.uk/~mbax2rf2/flipup/websiteroot/");
 
 }
 /*** ENVIRONMENT ***/
@@ -106,7 +106,7 @@ if (ISJAIR){
 	// ------------------------------------------ get subjects ---------------------------------------------
 	function getSubjects() {
 		global $con;
-		$result = mysqli_query($con, "SELECT name, subjectID as id from `Subject` ORDER BY name");
+		$result = mysqli_query($con, "SELECT name, subjectID as id from `Subject` ORDER BY name limit 5");
 		while($subject = mysqli_fetch_array($result)) {
 			$subjects[] = $subject;
 		}
@@ -124,6 +124,7 @@ FROM `Deck` d
 LEFT JOIN Quiz q on q.deckID = d.deckID
 GROUP BY d.deckID,d.name,d.rating
 ORDER BY d.rating+count(q.quizID)/2 desc, d.name
+limit 5
 SQL
 );
     while($deck = mysqli_fetch_array($result)) {
@@ -131,6 +132,17 @@ SQL
 		}
 		return $decks;
 	} // getDecks
+	// -----------------------------------------------------------------------------------------------------
+
+	// ----------------------------------------- get new decks ---------------------------------------------
+function getNewDecks()
+{
+    global $con;
+    $result = mysqli_query($con, "SELECT d.deckID,d.name FROM Deck d ORDER BY createdOn DESC LIMIT 5");
+    while (($row = mysqli_fetch_assoc($result)))
+        $rows[] = $row;
+    return $rows;
+}
 	// -----------------------------------------------------------------------------------------------------
 
   // -------
