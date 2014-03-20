@@ -186,6 +186,12 @@ SQL
     }
 	}
 
+  function deleteQuestion($questionID) {
+    global $con;
+    $creator = mysqli_query($con, "SELECT userID FROM `Question` WHERE questionID = '$questionID'");
+      mysqli_query($con, "DELETE FROM `Question` WHERE questionID = '$questionID'");
+  }
+
 	/**
 	 * this should print the page head to screen any parameters should be passed if
 	 * required

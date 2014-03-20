@@ -16,6 +16,17 @@
     $questions = getQuestions($deckID);
     $deckInfo = getDeckInfo($deckID);
   }
+
+  if(!isset($_GET['delete'])) {
+    $creator = mysqli_query($con, "SELECT userID FROM `Question` WHERE questionID = '$questionID'");
+    if ($creator == $userID) {
+      deleteQuestion($_REQUEST['questionID']);
+      $deleted = 1;
+    }
+    else
+      $notCreator = 1;
+}
+
   disconnectDB();
 ?>
   <style>
@@ -28,6 +39,16 @@
       <h1>The list of decks for <?php echo $subjectInfo["name"]; ?></h1>
     </div>
     <div class="row">
+      <?php if (isset($notCreator)) { ?>
+      <div class="alert alert-danger">
+        <strong>You cannot delete a question that wasn't created by you!</strong>
+      </div>
+      <?php }
+      if (isset($deleted)) { ?>
+       <div class="alert alert-success save-success hidden">
+        <strong>You have successfully deleted a question!</strong>
+       </div>
+      <?php } ?>
       <div class="col-md-4 list-group">
         <a href="#" class='list-group-item active'>Subjects</a>
         <?php foreach($subjects as $subject){ ?>
@@ -65,7 +86,7 @@
               <?php if($isLoggedIn):?>
                 <div class="pull-right">
                   <button href="<?php echo getBaseUrl()."create-your-own.php?deckID=".$deckID."&id=".$question["questionID"]; ?>" type="button" class="btn btn-warning btn-sm">edit</button>
-                  <form action="<?php echo getBaseUrl()."create-your-own.php?deckID=".$deckID."&id=".$question["questionID"]."&delete"; ?>"><button type="button" class="btn btn-danger btn-sm">delete</button></form>
+                  <form action="<?php echo getBaseUrl()."decks.php?subjectID=".$subjectID."&deckID=".$deckID; ?>"><input type="submit" value="delete" class="btn btn-danger btn-sm"></form>
                 </div>
               <?php endif;?>
               <?php echo $question["text"]; ?>
