@@ -119,7 +119,7 @@ if (ISJAIR){
 	function getTopDecks() {
 		global $con;
 		$result = mysqli_query($con, <<<SQL
-SELECT name, d.deckID as id 
+SELECT name, d.deckID as id
 FROM `Deck` d
 LEFT JOIN Quiz q on q.deckID = d.deckID
 GROUP BY d.deckID,d.name,d.rating
@@ -136,15 +136,15 @@ SQL
   // -------
   function getDecks($subjectID){
     global $con;
-    $result = mysqli_query($con, <<<SQL
-    SELECT d.deckID as id,d.name as name,u.name as user,d.rating as rating,count(q.quizID) as total
+    $sql =  <<<SQL
+    SELECT d.deckID as id,d.name as name,d.rating as rating,sum(1) as questions
     FROM Deck as d
-    LEFT JOIN User as u on u.userID = d.userID
-    LEFT JOIN Quiz as q on q.deckID = d.deckID
+    join Question q on q.deckID = d.deckID
     WHERE d.subjectID = $subjectID
-    GROUP BY d.deckID,d.name,u.name,d.rating
+    group by d.deckID,d.name,d.rating
 SQL
-);
+;
+    $result = mysqli_query($con,$sql);
 		while($deck = mysqli_fetch_array($result)) {
 			$decks[] = $deck;
 		}
