@@ -39,12 +39,14 @@
       <div class="col-md-4 list-group">
           <a class='list-group-item active'>List of Decks</a>
           <?php foreach($decks as $deck){?>
-            <div class="pull-right">
-              <button href="<?php echo getBaseUrl()."decks.php?subjectID=".$subjectID."&deckID=".$deck['id'];?>" type="button" class="btn btn-default btn-sm">start</button>
-              <button href="#" type="button" class="btn btn-danger btn-sm">delete</button>
-            </div>
-            <a class="list-group-item"><?php echo $deck["name"]; ?>
-              <span class="pull-right badge"><?php echo $deck["questions"];?></span>
+            <a class="list-group-item">
+              <?php echo $deck["name"]; ?>
+              <div class="pull-right">
+                <span class="badge"><?php echo $deck["questions"];?></span>
+                <button href="<?php echo getBaseUrl()."decks.php?subjectID=".$subjectID."&deckID=".$deck['id'];?>" type="button" class="btn btn-default btn-sm">questions</button>
+                <button href="<?php echo getBaseUrl()."quiz.php?deckID=".$deck['id'];?>" type="button" class="btn btn-danger btn-sm">start</button>
+              </div>
+              <div class="clearfix"></div>
             </a>
           <?php } ?>
       </div>
