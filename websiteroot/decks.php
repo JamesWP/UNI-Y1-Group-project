@@ -44,7 +44,7 @@
               <div class="pull-right">
                 <span class="badge"><?php echo $deck["questions"];?></span>
                 <button href="<?php echo getBaseUrl()."decks.php?subjectID=".$subjectID."&deckID=".$deck['id'];?>" type="button" class="btn btn-default btn-sm">questions</button>
-                <button href="<?php echo getBaseUrl()."quiz.php?deckID=".$deck['id'];?>" type="button" class="btn btn-danger btn-sm">start</button>
+                <button href="<?php echo getBaseUrl()."quiz.php?deckID=".$deck['id'];?>" type="button" class="btn btn-success btn-sm">start</button>
               </div>
               <div class="clearfix"></div>
             </a>
@@ -64,7 +64,7 @@
             <div class='list-group-item'>
               <?php if($isLoggedIn):?>
                 <div class="pull-right">
-                  <button href="<?php echo getBaseUrl()."create-your-own.php?deckID=".$deckID."&id=".$question['id']; ?>" type="button" class="btn btn-warning btn-sm">edit</button>
+                  <button href="<?php echo getBaseUrl()."create-your-own.php?deckID=".$deckID."&id=".$question["questionID"]; ?>" type="button" class="btn btn-warning btn-sm">edit</button>
                   <button href="#" type="button" class="btn btn-danger btn-sm">delete</button>
                 </div>
               <?php endif;?>
