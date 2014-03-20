@@ -3,10 +3,11 @@
 function createQuiz($userID, $deckID) {
   global $con;
   mysqli_query($con, "INSERT INTO `Quiz` (userID, deckID)
-                      VALUES ('$userID', $'deckID')");
-  $result = mysqli_query($con, "SELECT MAX(quizID) FROM `Quiz`
+                      VALUES ('$userID', '$deckID')");
+  $result = mysqli_query($con, "SELECT MAX(quizID) as lastID FROM `Quiz`
                                 WHERE userID = '$userID'");
-  return $result;
+  $array = mysqli_fetch_assoc($result);
+  return $array['lastID'];
 } // createQuiz
 
 function getNextQuestion($quizID) {
@@ -24,17 +25,17 @@ function getNextQuestion($quizID) {
                                     WHERE q.deckID = '$deckID' AND q.questionID NOT IN
                                     (SELECT r.questionID FROM Result as r WHERE r.quizID = '$quizID')
                                     ORDER BY RAND() LIMIT 1");
-      $result2 = mysqli_query($con, "select sum(1)+1 as questionNo from Result where quizID = $quizID");
+      $result2 = mysqli_query($con, "select sum(questionID)+1 as questionNo from Result where quizID = $quizID group by quizID");
       $question = mysqli_fetch_assoc($result);
       $quiz = mysqli_fetch_assoc($result2);
-      return array('questionID'=>$question['questionID'],'json'=>$question['json'],'questionNo'=>$quiz['questionNo']);
+      return array('questionID'=>$question['questionID'],'json'=>$question['data'],'questionNo'=>$quiz['questionNo']);
     }
   }else{
     print_r(error_get_last());
   }
 }
 
-function saveQuestionResult($quizID, $result, $questionID){
+function saveQuestionResult($quizID, $correct, $questionID){
   global $con;
   $result = mysqli_query($con, "SELECT quizID FROM `Quiz` WHERE quizID = '$quizID'");
   $question = mysqli_query($con, "SELECT 1 FROM `Question` WHERE questionID = '$questionID'");
@@ -42,12 +43,12 @@ function saveQuestionResult($quizID, $result, $questionID){
   if(mysqli_num_rows($result) == 1 
       && ($result == 0 || $result == 1) 
       && mysqli_num_rows($question)==1){
-    mysqli_query($con, "INSERT INTO `Result` (quizID, correct, questionID)
-                                     VALUES ('$quizID', '$result', '$questionID')");
+    mysqli_query($con, "INSERT INTO Result (quizID, correct, questionID)
+                                     VALUES ($quizID, $correct, $questionID)");
     mysqli_query($con, "UPDATE `Quiz` SET questionsLeft = questionsLeft-1
                         WHERE quizID = '$quizID'");
   }else{
-    print_r(error_get_last());
+    print_r(mysqli_error($con));
   }
 }
 
@@ -63,8 +64,6 @@ function createQuestion($userID, $deckID,  $data, $difficulty = 3){
   global $con;
   $result = mysqli_query($con, "INSERT INTO `Question` (deckID, userID, data, difficulty)
                       VALUES('$deckID', '$userID', '$data', '$difficulty')");
-  print_r(mysqli_error($con));
-  die();
   return $result != false;
 }
 
