@@ -205,7 +205,7 @@ SQL;
 function getOtherQuizes($quizID){
   global $con;
   $sql = <<<SQL
-SELECT r.name as otherQuizes FROM `Deck` WHERE `subjectID` = (SELECT d.subjectID from Quiz q JOIN Deck d ON d.deckID = q.deckID WHERE q.quizID = $quizID) AND deckID != (SELECT deckID from Quiz Where quizID = $quizID)
+SELECT name as otherQuizes FROM `Deck` WHERE `subjectID` = (SELECT d.subjectID from Quiz q JOIN Deck d ON d.deckID = q.deckID WHERE q.quizID = $quizID) AND deckID != (SELECT deckID from Quiz Where quizID = $quizID)
 
 SQL;
   $result = mysqli_query($con,$sql);
