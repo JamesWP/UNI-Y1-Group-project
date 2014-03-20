@@ -10,7 +10,7 @@
           <p>These terms of use govern your use of our site. These website terms of use have been provided and, approved by the solicitors at legal documents resource DIY Legals. Please read these terms in full before you use this Website. If you do not accept these terms of use, please do not use this Website. Your continued use of this site confirms your acceptance of these terms.</p>
           <h3> Web Site Access </h3>
           <p>It is not necessary to register with us in order to use most parts of this Website. However, particular areas of this Website will only be accessible only if you have registered. </p>
-          <h3>Use of Website</p>
+          <h3>Use of Website</h3>
           <ul>
             <li>This website may be used for your own private purposes and in accordance with these terms of use.</li>
             <li>You may print and download material from this website provided that you do not modify or reproduce the content without our prior written consent.</li>
@@ -33,15 +33,15 @@
           </ul>
           <h3>Links To and From Other Websites</h3>
           <ul>
-            <li>1.9 Throughout this Website you may find links to third party websites. The provision of a link to such a website does not mean that we endorse that website.  If you visit any website via a link on this Website you do so at your own risk.</li>
-            <li>1.10 Any party wishing to link to this website is entitled to do so provided that the conditions below are observed:
+            <li>Throughout this Website you may find links to third party websites. The provision of a link to such a website does not mean that we endorse that website.  If you visit any website via a link on this Website you do so at your own risk.</li>
+            <li>Any party wishing to link to this website is entitled to do so provided that the conditions below are observed:
               <ul>
                 <li>(a) you do not seek to imply that we are endorsing the services or products of another party unless this has been agreed with us in writing;</li>
                 <li>(b) you do not misrepresent your relationship with this website; and</li>
                 <li>(c) the website from which you link to this Website does not contain offensive or otherwise  controversial content or, content that infringes any intellectual property rights or other rights of a third party.</li>
               </ul>
             </li>
-            <li>1.11 By linking to this Website in breach of clause 5.2 you shall indemnify us for any loss or damage suffered to this Website as a result of such linking.</li>
+            <li>By linking to this Website in breach of clause 5.2 you shall indemnify us for any loss or damage suffered to this Website as a result of such linking.</li>
           </ul>
           <h3>Disclaimer</h3>
           <ul>
