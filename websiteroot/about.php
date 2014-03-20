@@ -21,8 +21,8 @@
               <p>Terms and Conditions aren't always very exciting, but we have to put them somewhere and some people do like to read them, so if you're really interested <a href = "terms-and-conditions.php"> click here! </a> </p>
             </div>
             <div class="col-lg-6">
-              <h2><font color="#428BCA">Data &amp Privacy</font></h2>
-              <p> The internet is a great thing, but while you use it, you want to know that you and your data are safe. Don't worry, we will keep any information about you safe, but if you want more details then <a href = "data-and-privacy.php">click here.</a> </p>
+              <h2><font color="#428BCA">Privacy Policy</font></h2>
+              <p> The internet is a great thing, but while you use it, you want to know that you and your data are safe. Don't worry, we will keep any information about you safe, but if you to see our privacy policy then <a href = "privacy-policy.php">click here.</a> </p>
             </div>
           </div>
 <?php pageFoot(); ?>      
