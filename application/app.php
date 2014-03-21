@@ -195,8 +195,16 @@ SQL
 
   function getScore($quizID) {
     global $con;
-    $score = mysqli_query($con, "SELECT SUM(correct) AS score FROM `Result` WHERE quizID = $quizID");
+    $result = mysqli_query($con, "SELECT SUM(correct) AS score FROM `Result` WHERE quizID = $quizID");
+    $score = mysqli_fetch_array($result);
     return $score['score'];
+  }
+
+  function getNoOfQuestions($quizID) {
+    global $con;
+    $result = mysqli_query($con, "SELECT startQuestions FROM `Quiz` WHERE quizID = $quizID");
+    $noOfQuestions = mysqli_fetch_array($result);
+    return $noOfQuestions['startQuestions'];
   }
 
 	/**

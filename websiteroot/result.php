@@ -8,7 +8,7 @@
   $correct = $data['correct'];
   $otherResults = getOtherUsersScore($_SESSION['quizID']);
   $relatedQuizes = getOtherQuizes($_SESSION['quizID']);
-  $score = getScore($_SESSION['quizID']);
+  $score = getScore($_SESSION['quizID']) / getNoOfQuestions($_SESSION['quizID']);
   disconnectDB();
 ?>
 
@@ -18,7 +18,7 @@
 <div class="row well well-lg">
 <div class="col-md-6 col-md-offset-3" style="text-align:center">
 <h1> Congratz <h1>
-<p1>You scored <?php echo $score; ?> on this quiz<p1>
+<p1>You scored <?php echo $score."%"; ?> on this quiz<p1>
 </div>
 
 </div>
