@@ -2,56 +2,94 @@
 <?php pageInit(); ?>
 
 <?php /* TODO need to gather data from database */
-  connectDB();
-  $data = getResults($_SESSION['quizID']);
-  $questions = $data['questions'];
-  $correct = $data['correct'];
-  $otherResults = getOtherUsersScore($_SESSION['quizID']);
-  $relatedQuizes = getOtherQuizes($_SESSION['quizID']);
-  $score = getScore($_SESSION['quizID']) / getNoOfQuestions($_SESSION['quizID']) * 100;
-  disconnectDB();
+connectDB();
+
+
+if (isset($_SESSION['quizID'])) {
+  $quizID = $_SESSION['quizID'];
+  $_SESSION['lastQuizID'] = $_SESSION['quizID'];
+  unset($_SESSION['quizID']);
+} else {
+  $quizID = $_SESSION['lastQuizID'];
+}
+
+if (!isset($_SESSION['ratings'])) {
+  $_SESSION['ratings'] = array();
+}
+
+if (isset($_REQUEST['rate'])) {
+  $questionID = intval($_REQUEST['questionID']);
+  $rating = intval($_REQUEST['rating']);
+
+  if (!in_array($questionID, $_SESSION['ratings'])) {
+    addQuestionRating($questionID, $quizID, $rating);
+    $_SESSION['ratings'][] = $questionID;
+  }
+}
+
+$data = getResults($quizID);
+$questions = $data['questions'];
+$correct = $data['correct'];
+$otherResults = getOtherUsersScore($quizID);
+$relatedQuizes = getOtherQuizes($quizID);
+$score = getScore($quizID) / getNoOfQuestions($quizID) * 100;
+disconnectDB();
 ?>
 
 <?php pageHead(); ?>
 
 <div class="container">
-<div class="row well well-lg">
-<div class="col-md-6 col-md-offset-3" style="text-align:center">
-<h1> Congratz <h1>
-<p1>You scored <?php echo $score."%"; ?> on this quiz<p1>
-</div>
-
-</div>
+  <div class="row well well-lg">
+    <div class="col-md-6 col-md-offset-3" style="text-align:center">
+      <h1> Congratz
+        <h1>
+          <p>You scored <?php echo intval($score) . "%"; ?> on this quiz
+          </p>
+        </h1>
+    </div>
+  </div>
 </div>
 <div class="container">
   <div class="row">
 
     <div class="col-md-6 list-group">
       <a class="list-group-item active">
-      Question Results
+        Question Results
       </a>
-      <?php foreach($questions as $question){ ?>
+      <?php foreach ($questions as $question) { ?>
         <div class="accordion" id="accordion2">
           <div class="accordion-group">
             <div class="accordion-heading">
-              <a href='#' class='list-group-item'><?php echo $question['title'];?> <span class="pull-right btn btn-<?php echo $question['correct']?"success":"danger"; ?>" ></span></a>
+              <a href='#' class='list-group-item'><?php echo $question['title']; ?> <span
+                    class="pull-right btn btn-<?php echo $question['correct'] ? "success" : "danger"; ?>"></span></a>
+
               <div class="panel-collapse collapse">
-               <div class="panel-body">
-                 <form action="<?php echo addQuestionRating($question['questionID'], $quizID, $rating) ?>">
-                   <div class="pull-right btn-group">
-                     <button id="rate" class="rate btn btn-default btn-sm"><span class="glyphicon glyphicon-star"></span></button>
-                     <button id="rate"  class="rate btn btn-default btn-sm"><span class="glyphicon glyphicon-star"></span></button>
-                     <button id="rate" class="rate btn btn-default btn-sm"><span class="glyphicon glyphicon-star"></span></button>
-                     <button id="rate" class="rate btn btn-default btn-sm"><span class="glyphicon glyphicon-star"></span></button>
-                     <button id="rate" class="rate btn btn-default btn-sm"><span class="glyphicon glyphicon-star"></span></button>
-                   </div>
-                 </form>
-                 <?php echo $question['text']; ?>
-               </div>
-           </div>
+                <div class="panel-body">
+                  <?php if (!in_array($question['questionID'], $_SESSION['ratings'])) : ?>
+                    <div class="pull-right btn-group">
+                      <a href="<?php echo getBaseUrl() . "result.php?rate&questionID=" . $question['questionID'] . "&rating=0"; ?>"
+                         id="rate" class="rate btn btn-default btn-sm"><span
+                            class="glyphicon glyphicon-star"></span></a>
+                      <a href="<?php echo getBaseUrl() . "result.php?rate&questionID=" . $question['questionID'] . "&rating=1"; ?>"
+                         id="rate" class="rate btn btn-default btn-sm"><span
+                            class="glyphicon glyphicon-star"></span></a>
+                      <a href="<?php echo getBaseUrl() . "result.php?rate&questionID=" . $question['questionID'] . "&rating=2"; ?>"
+                         id="rate" class="rate btn btn-default btn-sm"><span
+                            class="glyphicon glyphicon-star"></span></a>
+                      <a href="<?php echo getBaseUrl() . "result.php?rate&questionID=" . $question['questionID'] . "&rating=3"; ?>"
+                         id="rate" class="rate btn btn-default btn-sm"><span
+                            class="glyphicon glyphicon-star"></span></a>
+                      <a href="<?php echo getBaseUrl() . "result.php?rate&questionID=" . $question['questionID'] . "&rating=4"; ?>"
+                         id="rate" class="rate btn btn-default btn-sm"><span
+                            class="glyphicon glyphicon-star"></span></a>
+                    </div>
+                  <?php endif; ?>
+                  <?php echo $question['text']; ?>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
       <?php } ?>
     </div>
     <div class="col-md-6">
@@ -60,8 +98,9 @@
           <a class="list-group-item active">
             Others' Results
           </a>
-          <?php foreach($otherResults as $otherResult){ ?>
-            <a href='#' class='list-group-item'><?php echo $otherResult['user'];?> <span class="pull-right"><?php echo $otherResult['score'];?></span></a>
+          <?php foreach ($otherResults as $otherResult) { ?>
+            <a href='#' class='list-group-item'><?php echo $otherResult['user']; ?> <span
+                  class="pull-right"><?php echo $otherResult['score']; ?></span></a>
           <?php } ?>
         </div>
       </div>
@@ -70,34 +109,22 @@
           <a class="list-group-item active">
             Other Quizzes
           </a>
-          <?php foreach($otherResults as $otherResult) { ?>
-            <a href='#' class='list-group-item'><?php echo $relatedQuizes['otherQuizes'];?></a>
+          <?php foreach ($relatedQuizes as $relatedQuiz) { ?>
+            <a href='<?php echo getBaseUrl() . "quiz.php?deckID=" . $relatedQuiz['deckID']; ?>'
+               class='list-group-item'><?php echo $relatedQuiz['otherQuizes']; ?></a>
           <?php } ?>
         </div>
       </div>
-      <div class="row">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Modal</button>
-        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              Hello there!
-            </div>
-          </div>
-        </div>
-      </div>
-   </div>
- </div>
+    </div>
+  </div>
 </div>
 <script>
- $('.list-group-item').click(function(){
-   $(this).parent().find('.collapse').toggle()
-   return false;
- });
- $('.btn-default').click(function(){
-     $(this).toggleClass('btn-warning');
- });
-</script>
-<script type="text/javascript">
-  $('#myModal').modal('show');
+  $('#accordion2 .list-group-item').click(function () {
+    $(this).parent().find('.collapse').toggle()
+    return false;
+  });
+  $('.btn-default').click(function () {
+    $(this).toggleClass('btn-warning');
+  });
 </script>
 <?php pageFoot(); ?>

@@ -145,8 +145,10 @@ function getResults($quizID)
           join Question as q on q.questionID = r.questionID
           where r.quizid = $quizID";
     mysqli_multi_query($con, $sql);
+    mysqli_free_result(mysqli_next_result($con));
     mysqli_next_result($con);
     $result = mysqli_use_result($con);
+    $error = mysqli_error($con);
     $questions = array();
     while ($question = mysqli_fetch_assoc($result)) {
         $question['text'] = json_decode($question['data'])->text;
@@ -198,7 +200,7 @@ SQL
 
 function getQuiz($quizID){
   global $con;
-  $result = mysqli_query($con,"select sum(1) as correct from Result where quizID = $$quizID");
+  $result = mysqli_query($con,"select sum(1) as correct from Result where quizID = $quizID");
   return mysqli_fetch_assoc($result);
 }
 
@@ -226,7 +228,7 @@ SQL;
 function getOtherQuizes($quizID){
   global $con;
   $sql = <<<SQL
-SELECT name as otherQuizes FROM `Deck` WHERE `subjectID` = (SELECT d.subjectID from Quiz q JOIN Deck d ON d.deckID = q.deckID WHERE q.quizID = $quizID) AND deckID != (SELECT deckID from Quiz Where quizID = $quizID)
+SELECT name as otherQuizes,deckID FROM `Deck` WHERE `subjectID` = (SELECT d.subjectID from Quiz q JOIN Deck d ON d.deckID = q.deckID WHERE q.quizID = $quizID) AND deckID != (SELECT deckID from Quiz Where quizID = $quizID)
 
 SQL;
   $result = mysqli_query($con,$sql);

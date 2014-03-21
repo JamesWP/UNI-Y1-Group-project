@@ -111,7 +111,15 @@ if is get next question then get next question
         questionTemplate = new QuestionTemplateManager('question-template');
         getNextQuestion();
     });
-
+    $(document).ready(function() {
+      $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+          event.preventDefault();
+          $('#submit').click();
+          return false;
+        }
+      });
+    });
     $('#question').on('click', '#submit', function () {
         if (question.isCorrect()) {
             alert('Correct!');
