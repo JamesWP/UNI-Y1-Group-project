@@ -26,7 +26,8 @@ if (isset($_REQUEST['rate'])) {
     $_SESSION['ratings'][] = $questionID;
   }
 }
-
+disconnectDB();
+connectDB();
 $data = getResults($quizID);
 $questions = $data['questions'];
 $correct = $data['correct'];

@@ -83,9 +83,9 @@ disconnectDB();
     </div>
     <div class="col-md-4 list-group">
       <a class='list-group-item active'>
-        <button href="<?php echo getBaseUrl() . "deck-creator.php?subjectID=" . $subjectID . "&deckID=" . $deck['id']; ?>"
+        <?php if ($isLoggedIn): ?><button href="<?php echo getBaseUrl() . "deck-creator.php?subjectID=" . $subjectID . "&deckID=" . $deck['id']; ?>"
                                                 type="button" class="pull-right btn btn-default btn-xs">new deck
-        </button>List of Decks</a>
+        <?php endif;?></button>List of Decks</a>
       <?php foreach ($decks as $deck) { ?>
         <a class="list-group-item">
           <?php echo $deck["name"]; ?>

@@ -145,7 +145,7 @@ function getResults($quizID)
           join Question as q on q.questionID = r.questionID
           where r.quizid = $quizID";
     mysqli_multi_query($con, $sql);
-    mysqli_free_result(mysqli_next_result($con));
+    mysqli_next_result($con);
     mysqli_next_result($con);
     $result = mysqli_use_result($con);
     $error = mysqli_error($con);
@@ -157,6 +157,7 @@ function getResults($quizID)
     }
     $result = mysqli_query($con, "SELECT count(1) AS correct FROM Result WHERE quizid = $quizID AND correct = 1");
     $tmp = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
     $correct = $tmp['correct'];
 
     return array("questions" => $questions, "correct" => $correct);
