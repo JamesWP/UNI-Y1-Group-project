@@ -195,8 +195,8 @@ SQL
 
   function getScore($quizID) {
     global $con;
-    $score = mysqli_query($con, "SELECT SUM(correct) AS score FROM `Question` WHERE quizID = $quizID");
-    return $score;
+    $score = mysqli_query($con, "SELECT SUM(correct) AS score FROM `Result` WHERE quizID = $quizID");
+    return $score['score'];
   }
 
 	/**
