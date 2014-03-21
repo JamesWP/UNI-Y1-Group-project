@@ -7,26 +7,17 @@
             <div class="row">
               <div class="col-lg-12">
                 <h2 class="text-center"><font color="#428BCA">Frequently Asked Questions</font></h2>
-                <h3><font color="#428BCA">How can I create my own deck of questions?</font></h3>
-                <p>You need to be logged in to create your own page. Then go to (the create your own) button on the top of the page, choose a subject, and you could generate the questions by typing the question, choosing the type of answers, typing the answers depends on the type. You cannot write less than 10 questions per deck.</p>
-                <h3><font color="#428BCA">How can I modify my information?</font></h3>
-                <h3><font color="#428BCA">How can I share my result with my friends if I do not have an account?</font></h3>
-                <h3><font color="#428BCA">How can I register to the website?</font></h3>
-                <p>Go to register button in the top of the main page, and you could register by choosing a user name, password, and an email.</p>
-                <h3><font color="#428BCA">How can I improve my result?</font></h3>
-                <p>You could improve your result by reading more on the topic and by solving as many quizzes as it required.</p>
-                <h3><font color="#428BCA">Why is it different?</font></h3>
-                <h3><font color="#428BCA">What if I forget my password?</font></h3>
-                <p>There is a forget your password button you could click on it in the login page and that will send your password to your account.</p>
-                <h3><font color="#428BCA">What if I decided to change the subject in the middle of the quiz?</font></h3>
-                <p>You could always go to the subject button on the top of the page and choosing another subject.</p>
-                <h3><font color="#428BCA">How can I choose a subject?</font></h3>
-                <p>There would be the list of subjects on the main page, or alternatively you could choose the subject button on the top of the page.</p> 
-                <h3><font color="#428BCA">How can a quiz generate?</font></h3>
-                <p>It generate randomly from a deck of questions.</p>
-                <h3><font color="#428BCA">How can I know what decks are there?</font></h3>
-                <p>You could know the top rated decks from the main page, or you could choose a subject, and all the decks in the subject will be listed.</p>
-                <a class="btn btn-primary" href="about.php" role="button">Go back to Help us Page &raquo;</a></p>
+                <h3>Why should I use Flipup?</h3>
+                <p>Flipup is a quiz site with more of a focus on learning and revision than other quiz sites that have been made. This site aims to give you the ability to take quizzes designed by other people or set up your own set of questions to test yourself on what you have learned. Of course, Flipup can also be used for fun</p>
+                <h3> How do I create my own quizzes? </h3>
+                <p> To create your own quiz, first make sure you are signed onto the site then click "Create" in the header bar. Then, give your deck of questions a name and a subject. This will then take you onto the question editing page where you can add and edit your questions. A deck requires a minimum of 10 questions. </p>
+                <h3> How do I register?</h3>
+                <p>Click sign up in the header bar, then in the webpage that opens, fill in your chosen username and password. If the username is available you will then have created an account.</p>
+                <h3> How can I find a quiz I want to take? </h3>
+                <p>On the main page there are a list of currently trending quizzes and subjects. To find a quiz on a particular subject click on one of the subjects and from the list that appears, click on the quiz you would like to take.</p>
+                <h3> How many questions are there in a quiz? </h3>
+                <p>You can choose how many questions you would like to take in a quiz, however, most decks will only have 10 questions so this is the max number you can take in any given quiz, if you want a quiz of fewer questions than this, random questions will be chosen from the deck for your quiz.</p>
+                <a class="btn btn-primary" href="help.html" role="button">Go back to Help us Page &raquo;</a></p>
               </div>
             </div>
           </div>
