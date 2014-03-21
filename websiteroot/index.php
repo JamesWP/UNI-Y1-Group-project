@@ -14,9 +14,9 @@
 
 <?php pageHead(); ?>
   <div class="container">
-    <div id=flipup-logo class="row">
+    <div id="flipup-logo" class="row">
       <div class="col-md-8 col-md-offset-2 pagination-centered">
-        <img class="img-responsive" src="<?php echo getBaseUrl();?>images/flipup.png"/> 
+        <img class="img-responsive" src="<?php echo getBaseUrl();?>images/rsz_flipup.png"/> 
       </div>
     </div>
     <div class="row">
@@ -47,7 +47,7 @@
           <div class="panel panel-default mypanel">
             <div class="panel-body">
               <span class="label label-default col-md-1">1</span>
-              <p class="col-md-11">First select a subject from the list above... or select a Top deck to begin instantly!</p>
+              <p class="col-md-11">First select a subject or a deck to begin!</p>
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-md-offset-1"">
+        <div class="col-md-3 col-md-offset-1">
           <div class="panel panel-default mypanel">
             <div class="panel-body">
               <span class="label label-default col-md-1">3</span>

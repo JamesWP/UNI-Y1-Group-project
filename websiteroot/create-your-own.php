@@ -75,7 +75,7 @@ if(isset($_POST['save'])){
           <option value="">Choose a quesetion type</option>              
           <option value="multiplechoice">Multiple choice</option>
           <option value="blanks">Fill in the blank</option>
-          <option value="truefalse">Truth or false</option>
+          <option value="truefalse">True or false</option>
         </select>
       </div>
       <div class="questionType" data-questionType="multiplechoice">

@@ -20,6 +20,7 @@ if (isset($_GET['delete'])) {
     disconnectDB();
     die();
   }
+  
   $result = mysqli_query($con, "SELECT userID FROM `Question` WHERE questionID = $questionID");
   $creator = mysqli_fetch_assoc($result);
   $creator = $creator['userID'];
@@ -43,28 +44,34 @@ if (isset($deckID)) {
 disconnectDB();
 ?>
 <?php pageHead(); ?>
-<style>
-  .top-page {
-    margin-bottom: 195px;
-  }
-</style>
+
 <div class="container">
   <div class="page-header top-page">
     <h1>The list of decks for <?php echo $subjectInfo["name"]; ?></h1>
   </div>
-  <div class="row">
     <?php if (isset($notCreator)) { ?>
       <div class="alert alert-danger">
         <strong>You cannot delete a question that wasn't created by you!</strong>
       </div>
     <?php
     }
-    if (isset($deleted)) {
+    else if (isset($deleted)) {
       ?>
       <div class="alert alert-success save-success hidden">
         <strong>You have successfully deleted a question!</strong>
       </div>
+    <?php }
+    else { ?>
+      <style>
+      .top-page {
+        margin-bottom: 90px;
+      }
+    </style>
     <?php } ?>
+  <div class="well" style="margin-top: 0 auto">
+    Fruitcake applicake ice cream bonbon. Cotton candy tart biscuit jelly beans cheesecake gummi bears bonbon pudding. Lemon drops I love tiramisu biscuit. Halvah jelly beans caramels sesame snaps donut. Carrot cake dessert tiramisu biscuit dessert applicake marshmallow. I love lemon drops marzipan danish ice cream liquorice sweet roll jelly-o. Cheesecake applicake caramels topping I love biscuit sesame snaps halvah. Pastry chupa chups oat cake apple pie carrot cake ice cream. Candy lemon drops marshmallow.
+  </div>
+  <div class="row">
     <div class="col-md-4 list-group">
       <a href="#" class='list-group-item active'>Subjects</a>
       <?php foreach ($subjects as $subject) { ?>
@@ -85,10 +92,10 @@ disconnectDB();
           <div class="pull-right">
             <span class="badge"><?php echo $deck["questions"]; ?></span>
             <button href="<?php echo getBaseUrl() . "decks.php?subjectID=" . $subjectID . "&deckID=" . $deck['id']; ?>"
-                    type="button" class="btn btn-default btn-sm">view
+                    type="button" class="btn btn-default btn-xs">view
             </button>
             <button href="<?php echo getBaseUrl() . "quiz.php?deckID=" . $deck['id']; ?>" type="button"
-                    class="btn btn-success btn-sm">start
+                    class="btn btn-success btn-xs">start
             </button>
           </div>
           <div class="clearfix"></div>
@@ -111,11 +118,11 @@ disconnectDB();
             <div class="pull-right">
               <button
                   href="<?php echo getBaseUrl() . "create-your-own.php?deckID=" . $deckID . "&id=" . $question["questionID"]; ?>"
-                  type="button" class="btn btn-warning btn-sm">edit
+                  type="button" class="btn btn-warning btn-xs">edit
               </button>
               <button type="button"
                       href="<?php echo getBaseUrl() . "decks.php?subjectID=" . $subjectID . "&deckID=" . $deckID . "&questionID=" . $question['questionID'] . "&delete"; ?>"
-                      class="btn btn-danger btn-sm">Delete
+                      class="btn btn-danger btn-xs">Delete
               </button>
             </div>
           <?php endif; ?>
