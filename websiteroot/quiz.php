@@ -114,10 +114,10 @@ if is get next question then get next question
 
     $('#question').on('click', '#submit', function () {
         if (question.isCorrect()) {
-            alert('well done your correct!');
+            alert('Correct!');
         } else {
-            alert('oops that was wrong :(');
-        }
+            alert('Oops, that was wrong :(');
+        } 
         $.ajax({'type': 'POST', 'url': window.location.href, data: {'action': 'save', 'correct': question.isCorrect() ? 'true' : 'false'}, dataType: 'json'})
             .done(function () {
                 getNextQuestion();
@@ -154,4 +154,5 @@ if is get next question then get next question
     }
     ;
 </script>
+<script>
 <?php pageFoot(array('lib/handlebars-v1.3.0.js', 'lib/module-question.js')); ?>

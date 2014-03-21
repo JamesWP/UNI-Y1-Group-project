@@ -8,7 +8,7 @@
   $correct = $data['correct'];
   $otherResults = getOtherUsersScore($_SESSION['quizID']);
   $relatedQuizes = getOtherQuizes($_SESSION['quizID']);
-  $score = getScore($_SESSION['quizID']) / getNoOfQuestions($_SESSION['quizID']);
+  $score = getScore($_SESSION['quizID']) / getNoOfQuestions($_SESSION['quizID']) * 100;
   disconnectDB();
 ?>
 
@@ -78,6 +78,7 @@
    </div>
  </div>
 </div>
+<!--
 <script>
  $('.list-group-item').click(function(){
    $(this).parent().find('.collapse').toggle()
@@ -86,5 +87,5 @@
  $('.btn-default').click(function(){
      $(this).toggleClass('btn-warning');
  });
-</script>
+</script> -->
 <?php pageFoot(); ?>
