@@ -23,10 +23,30 @@ function getNextQuestion($quizID)
         if (mysqli_num_rows($result) == 0) {
             return false;
         } else {
+
+            $sql = <<<SQL
+              set @quizID := $quizID;
+
+              #target difficulty
+              set @td = (select
+                3 + sum(case when correct = 1 then 0.5 else -0.5 end)
+              from Result where quizID = @quizID);
+
+              select questionID, data, difficulty   from Question
+              where deckID = (select deckID from Quiz where quizID = @quizID)
+                and questionID not in (select questionID from Result where quizID = @quizID)
+              order by abs(difficulty - @td), rand();
+SQL;
+            mysqli_multi_query($con,$sql);
+            mysqli_next_result($con);
+            mysqli_next_result($con);
+            $result = mysqli_store_result($con);
+            /*
             $result = mysqli_query($con, "SELECT q.questionID, q.data, q.difficulty FROM Question as q
                                     WHERE q.deckID = '$deckID' AND q.questionID NOT IN
                                     (SELECT r.questionID FROM Result as r WHERE r.quizID = '$quizID')
                                     ORDER BY RAND() LIMIT 1");
+            */
             $result2 = mysqli_query($con, "select count(questionID)+1 as questionNo from Result where quizID = $quizID");
             if (mysqli_num_rows($result) == 0) {
                 return false;
@@ -94,6 +114,7 @@ function getDeckInfo($deckID){
 function createQuestion($userID, $deckID, $data, $difficulty = 3)
 {
     global $con;
+    $data = mysqli_real_escape_string($con,$data);
     $result = mysqli_query($con, "INSERT INTO `Question` (deckID, userID, data, difficulty)
                       VALUES('$deckID', '$userID', '$data', '$difficulty')");
     return $result != false;
