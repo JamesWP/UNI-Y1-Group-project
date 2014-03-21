@@ -58,7 +58,7 @@
       <div class="row">
         <div class="list-group">
           <a class="list-group-item active">
-            Other's Results
+            Others' Results
           </a>
           <?php foreach($otherResults as $otherResult){ ?>
             <a href='#' class='list-group-item'><?php echo $otherResult['user'];?> <span class="pull-right"><?php echo $otherResult['score'];?></span></a>
@@ -68,17 +68,26 @@
       <div class="row">
         <div class="list-group">
           <a class="list-group-item active">
-            Other Quizes
+            Other Quizzes
           </a>
-          <?php foreach($otherResults as $otherResult){ ?>
+          <?php foreach($otherResults as $otherResult) { ?>
             <a href='#' class='list-group-item'><?php echo $relatedQuizes['otherQuizes'];?></a>
           <?php } ?>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Modal</button>
+        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              Hello there!
+            </div>
+          </div>
         </div>
       </div>
    </div>
  </div>
 </div>
-<!--
 <script>
  $('.list-group-item').click(function(){
    $(this).parent().find('.collapse').toggle()
@@ -87,5 +96,8 @@
  $('.btn-default').click(function(){
      $(this).toggleClass('btn-warning');
  });
-</script> -->
+</script>
+<script type="text/javascript">
+  $('#myModal').modal('show');
+</script>
 <?php pageFoot(); ?>
