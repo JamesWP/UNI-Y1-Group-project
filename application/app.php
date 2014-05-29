@@ -14,7 +14,7 @@ if (ISJAIR){
 }else if (ISPI){
   define('BASEURL', "http://10.2.215.160/flipup/");
 }else {
-  define('BASEURL', "https//web.cs.manchester.ac.uk/mbax3jp2/flipup/websiteroot/");
+  define('BASEURL', "https://web.cs.manchester.ac.uk/mbax3jp2/flipup/websiteroot/");
 }
 /*** ENVIRONMENT ***/
 
